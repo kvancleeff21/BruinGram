@@ -7,7 +7,7 @@ const cors = require("cors");
 const createError = require("http-errors");
 
 const initializeResources = require("./resources");
-const errorHandler = require("./midlewares/errorHandle");
+const errorHandler = require("./middlewares/errorHandle");
 const logger = require("./utils/logger");
 
 const app = express();

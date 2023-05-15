@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const verifyToken = require("../../../midlewares/verifyToken");
-const multer = require("../../../midlewares/multer");
+const verifyToken = require("../../../middlewares/verifyToken");
+const multer = require("../../../middlewares/multer");
 const {
     getPosts,
     getPost,

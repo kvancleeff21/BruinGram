@@ -1,7 +1,7 @@
 const express = require("express");
-const verifyToken = require("../../../midlewares/verifyToken");
+const verifyToken = require("../../../middlewares/verifyToken");
 const router = express.Router();
-const multer = require("../../../midlewares/multer");
+const multer = require("../../../middlewares/multer");
 
 const {
     getCurrentUser,
