@@ -1,0 +1,21 @@
+{
+  "name": "bruingram",
+  "version": "1.0.0",
+  "description": "CS 35l Final Project - Instagram Clone using MERN Stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.36.4",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "mongoose": "^7.1.1",
+    "morgan": "^1.10.0"
+  }
+}
