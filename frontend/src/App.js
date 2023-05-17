@@ -6,7 +6,7 @@ import NavBar from './components/Navbar';
 import Home from './pages/Home';
 import ImageDisplay from './pages/Image-display';
 
-
+// Run npm start to start the front end server
 
 function App() {
   return (
