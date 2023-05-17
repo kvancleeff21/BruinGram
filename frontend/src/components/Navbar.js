@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 //Pages to make = login page, home page, image uploading page, and image display page.
 
@@ -7,10 +8,10 @@ const NavBar = ()=>{
     <div>
         <h6>Navigation bar example</h6>
         <ul>
-            <li><a href="/Create">Upload image</a></li>
-            <li><a href="/Login">Login/Signup</a></li>
-            <li><a href="/Display">Image display</a></li>
-            <li><a href="/">Profile</a></li>
+            <li><Link to="/Create">Upload image</Link></li>
+            <li><Link to="/Login">Login/Signup</Link></li>
+            <li><Link to="/Display">Image display</Link></li>
+            <li><Link to="/">Profile</Link></li>
         </ul>
     </div>
     )
