@@ -2,19 +2,20 @@ const dotenv = require("dotenv");
 dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 console.log(process.env.NODE_ENV);
+console.log(process.env.PORT);
 module.exports = {
     env: process.env.NODE_ENV,
     port: process.env.PORT,
     mongodb: {
-        uri: process.env.MONGODB_URI,
+        uri: "mongodb+srv://kvancleeff:cp0EX86bL6ufRdNB@bgram.zdd2jsv.mongodb.net/?retryWrites=true&w=majority",
     },
     jwt: {
-        accessTokenSecret: process.env.ACCESS_TOKEN_SECRET,
-        refreshTokenSecret: process.env.REFRESH_TOKEN_SECRET,
+        accessTokenSecret: "MYSECRETTOKEN",
+        refreshTokenSecret: "MYREFRESHSECRETTOKEN",
     },
     cloudinary: {
-        cloudName: process.env.CLOUD_NAME,
-        apiKey: process.env.CLOUD_API_KEY,
-        apiSecret: process.env.CLOUD_API_SECRET,
+        cloudName: "bruingram",
+        apiKey: "171582938858184",
+        apiSecret: "AMjOPezJdo0zVr9N1EibtIPRyf8",
     },
 };
