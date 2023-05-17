@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Image-display.css"
+import "../css/Image-display.css"
 
 
 const ImageDisplay = ()=>{
