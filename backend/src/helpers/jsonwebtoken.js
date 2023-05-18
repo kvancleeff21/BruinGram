@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const KEY = process.env.ACCESS_TOKEN_SECRET;
+const KEY = "MYSECRETTOKEN";
 const sign = async (data) => {
     return new Promise((resolve, reject) => {
         const options = {

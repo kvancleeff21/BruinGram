@@ -8,7 +8,7 @@ const {
     follow,
     unfollow,
 } = require("./controller");
-const verifyToken = require("../../../midlewares/verifyToken");
+const verifyToken = require("../../../middlewares/verifyToken");
 
 router.get("/", search);
 router.get("/followings/:userId", verifyToken, getFollowing);
