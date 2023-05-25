@@ -6,9 +6,11 @@ const postRouter = require("./post");
 const postReactionRouter = require("./postReaction");
 const commentRouter = require("./comment");
 
-router.use("/api/auth", authRouter);
-router.use("/api/users", userRouter);
-router.use("/api/posts", postRouter);
-router.use("/api/post-reaction", postReactionRouter);
-router.use("/api/comment", commentRouter);
+router.use(authRouter);
+router.use(userRouter);
+router.use(postRouter);
+router.use(postReactionRouter);
+router.use(commentRouter);
 module.exports = router;
+
+//app.use(require("./api/v1/auth"));

@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 // const Login = ()=>{
 //     return (
 //     <div>
-//         <h1>Login/Signup? Page</h1>
+//         <h1>Login/Register? Page</h1>
 //     </div>
 //     )
 // }
@@ -22,44 +22,44 @@ function Header() {
     );
   }
   
-  export default function Login() {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate = useNavigate();
+export default function Register() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-    function handleClick() {
-      fetch("http://localhost:8000/login",{
-          method:"post",
-          headers:{
-              "Content-Type":"application/json"
-          },
-          body:JSON.stringify({
-              email:username,
-              password:password
-          })
+  function handleClick() {
+    fetch("http://localhost:8000/register",{
+      method:"post",
+      headers:{
+          "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+          email:username,
+          password:password
+      })
       }).then(res=>res.json())
       .then(data=>{
-          console.log(data)
+        console.log(data);
           if(data.errors){
+              // Im not actually sure how to get error data
               console.log("This is an error!" + JSON.stringify(data.errors));
               alert(data.errors.message);
           }else{
-              localStorage.setItem("jwt",data.meta.token)
-              localStorage.setItem("user",JSON.stringify(data.data.username))
-              console.log("SUCCESS!!!! logged in");
-              navigate("/");
+              // Navigate to login when sign up succeeds (maybe automatically log them in too?)
+              console.log("Registered Success!");
+              navigate("/login");
           }
       })
       .catch(err=>{
           console.log(err)
       })
     }
-  
-    return (
-      <> 
-        <Header/>
-        <div className="loginfields" style={{textAlign: "center"}}>
-          <h2>Login</h2>
+
+  return (
+    <> 
+      <Header/>
+      <div className="loginfields" style={{textAlign: "center"}}>
+          <h2>!!!Register!!!</h2>
           <p>
             Username/Email
           </p>
@@ -70,19 +70,20 @@ function Header() {
           <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}></input>
           <div>
             <button onClick={(e)=>{
-              e.preventDefault()
-              handleClick()
-            }}>
-               LOG IN 
-  
+              e.preventDefault() 
+              handleClick()}}>
+                SIGN UP
+                
             </button>
           </div>
-        </div>
 
-        <div className="login" >
-          <Link to="/signup" >Don't have an account? Sign up</Link> 
-        </div>
-      </>
-    );
-  
-  }
+        
+      </div>
+
+      <div className="login" >
+          <Link to="/login" >Have an account? Log in</Link>
+      </div>
+    </>
+  );
+
+}

@@ -9,7 +9,8 @@ const NavBar = ()=>{
         <h6>Navigation bar example</h6>
         <ul>
             <li><Link to="/Upload">Upload image</Link></li>
-            <li><Link to="/Login">Login/Signup</Link></li>
+            <li><Link to="/Register">Register</Link></li>
+            <li><Link to="/Login">Login</Link></li>
             <li><Link to="/Display">Image display</Link></li>
             <li><Link to="/">Profile</Link></li>
             <input type="text" placeholder="Search..."/>

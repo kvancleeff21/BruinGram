@@ -1,0 +1,60 @@
+
+
+### This is where I test the backend without loading up the front end. Click Send Request to test different api stuff
+GET /feed123 HTTP/1.1
+Host: localhost:8000
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmOWQ2MjNkZGMyMTg2MTQzOGI5NjIiLCJlbWFpbCI6ImFiY0BhYmNAZ21haWwuY29tIiwiaWF0IjoxNjg1MDM2Mzg2LCJleHAiOjE2ODUxMjI3ODZ9.2H86_gNaip8aMmzZfn6PAacrnHEE9kGziV-q3L0MiaI
+
+
+
+###
+GET /home HTTP/1.1
+Host: localhost:8000
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmOWQ2MjNkZGMyMTg2MTQzOGI5NjIiLCJlbWFpbCI6ImFiY0BhYmNAZ21haWwuY29tIiwiaWF0IjoxNjg1MDM2Mzg2LCJleHAiOjE2ODUxMjI3ODZ9.2H86_gNaip8aMmzZfn6PAacrnHEE9kGziV-q3L0MiaI
+
+###
+
+POST /feed123/new HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+    "content": "Just another test post(delete these test plz)"
+}
+
+###
+
+POST /register HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+    "email": "abc@abc@gmail.com",
+    "password": "abcd"
+}
+
+###
+
+POST /login HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+    "email": "abc@abc@gmail.com",
+    "password": "abcd"
+}
+
+###
+
+GET / HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmOWQ2MjNkZGMyMTg2MTQzOGI5NjIiLCJlbWFpbCI6ImFiY0BhYmNAZ21haWwuY29tIiwiaWF0IjoxNjg1MDM2Mzg2LCJleHAiOjE2ODUxMjI3ODZ9.2H86_gNaip8aMmzZfn6PAacrnHEE9kGziV-q3L0MiaI
+
+{
+    "perPage": 11,
+    "page": 2,
+    "type": "forYou"
+}
+
+# token! eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmOWQ2MjNkZGMyMTg2MTQzOGI5NjIiLCJlbWFpbCI6ImFiY0BhYmNAZ21haWwuY29tIiwiaWF0IjoxNjg1MDM2Mzg2LCJleHAiOjE2ODUxMjI3ODZ9.2H86_gNaip8aMmzZfn6PAacrnHEE9kGziV-q3L0MiaI

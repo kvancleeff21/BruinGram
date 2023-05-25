@@ -137,7 +137,7 @@ const getPost = async (req, next) => {
         const { userId } = req.payload;
         const { postId } = req.params;
         const post = await Post.aggregate([
-            { $match: { _id: ObjectId(postId) } },
+            { $match: { _id: new ObjectId(postId) } },
             {
                 $lookup: {
                     from: "users",
