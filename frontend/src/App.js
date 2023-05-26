@@ -21,10 +21,10 @@ function App() {
         {/* Left */}
         <div className="navbar-collapse w-100 order-1">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item active"><Link to="/App" className="nav-link">Home</Link></li>
+            <li className="nav-item active"><Link to="/App.js" className="nav-link">Home</Link></li>
             <li className="nav-item"><Link to="/Register" className="nav-link">Register</Link></li>
             <li className="nav-item"><Link to="/Login" className="nav-link">Login</Link></li>
-            <li className="nav-item"><Link to="/Display" className="nav-link">Display</Link></li>
+            <li className="nav-item"><Link to="/Image-Display" className="nav-link">Display</Link></li>
             <li className="nav-item"><Link to="/" className="nav-link">Profile</Link></li>
           </ul>
         </div>
@@ -53,14 +53,13 @@ function App() {
         </div>
       </nav>
 
-      {/* Old: simple list and NavBar Component
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/Upload" element={<Upload />}/>
         <Route path="/Login" element={<Login />}/>
         <Route path="/Register" element={<Register />}/>
         <Route path="/Display" element={<ImageDisplay />}/>
-      </Routes> */}
+      </Routes> 
       {/* <NavBar></NavBar> */}
     </BrowserRouter>
   );

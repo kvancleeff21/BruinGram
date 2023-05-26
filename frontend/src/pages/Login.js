@@ -80,7 +80,7 @@ function Header() {
         </div>
 
         <div className="login" >
-          <Link to="/signup" >Don't have an account? Sign up</Link> 
+          <Link to="/Register" >Don't have an account? Register</Link> 
         </div>
       </>
     );
