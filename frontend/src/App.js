@@ -24,7 +24,7 @@ function App() {
             <li className="nav-item active"><Link to="/App.js" className="nav-link">Home</Link></li>
             <li className="nav-item"><Link to="/Register" className="nav-link">Register</Link></li>
             <li className="nav-item"><Link to="/Login" className="nav-link">Login</Link></li>
-            <li className="nav-item"><Link to="/Image-Display" className="nav-link">Display</Link></li>
+            <li className="nav-item"><Link to="/Display" className="nav-link">Display</Link></li>
             <li className="nav-item"><Link to="/" className="nav-link">Profile</Link></li>
           </ul>
         </div>
@@ -33,9 +33,7 @@ function App() {
         <div class="navbar-collapse w-100 order-2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                  <a class="navbar-brand mx-auto">
-                    <img src={logo} width="30" height="30"/>
-                  </a>
+                  <img src={logo} width="30" height="30" class="navbar-brand mx-auto" alt="BruinGram Logo"/>
                 </li>
                 <li class="nav-item">
                   <Link to="/App" className="navbar-brand">BruinGram</Link>
