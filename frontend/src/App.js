@@ -1,5 +1,7 @@
 import React from "react";
-import {BrowserRouter, Route, Routes, Link} from 'react-router-dom'
+import {BrowserRouter, Route, Routes, Link} from 'react-router-dom';
+
+// import "./css/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Pages
@@ -17,40 +19,48 @@ import logo from "./logo.svg";
 function App() {
   return (
     <BrowserRouter>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+    {/* 
+    {navbar} is for {navitem} formatting
+    {navbar-expand} and {navbar-nav} is for making the vertical list horizontal
+
+    Use https://getbootstrap.com/docs/4.0/utilities/spacing/ for spacing {eg mt-3} or padding {eg p-2} for the div class
+
+    bootstrap nav is built with flexbox https://getbootstrap.com/docs/4.4/components/navs/
+    Trying to use {justify-content-between} and maybe {container} takes 3 d-flex items and makes it Left, Middle, Center via Flexbox properties: https://getbootstrap.com/docs/4.0/utilities/flex/
+
+    */}
+    
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark justify-content-between">
         {/* Left */}
-        <div className="navbar-collapse w-100 order-1">
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item active"><Link to="/App.js" className="nav-link">Home</Link></li>
+        <div class="">
+          <ul className="navbar-nav">
             <li className="nav-item"><Link to="/Register" className="nav-link">Register</Link></li>
             <li className="nav-item"><Link to="/Login" className="nav-link">Login</Link></li>
             <li className="nav-item"><Link to="/Display" className="nav-link">Display</Link></li>
             <li className="nav-item"><Link to="/" className="nav-link">Profile</Link></li>
           </ul>
         </div>
-
+        
         {/* Middle */}
-        <div class="navbar-collapse w-100 order-2">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <img src={logo} width="30" height="30" class="navbar-brand mx-auto" alt="BruinGram Logo"/>
-                </li>
-                <li class="nav-item">
-                  <Link to="/App" className="navbar-brand">BruinGram</Link>
-                </li>
-            </ul>
+        <div class="mx-auto order-0">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <img src={logo} width="30" height="30" class="navbar-brand mx-auto" alt="BruinGram Logo"/>
+            </li>
+            <li class="nav-item"> <Link to="/" className="navbar-brand">BruinGram</Link> </li>
+          </ul>
         </div>
 
         {/* Right */}
-        <div class="navbar-collapse w-100 order-3">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                  <input type="text" placeholder="Search..."/>
-                </li>
-            </ul>
+        <div class="">
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"></input>
+            {/* <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
+          </form>
         </div>
       </nav>
 
+      {/* Routes provides a "path" which references our pages*/}
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/Upload" element={<Upload />}/>
@@ -58,7 +68,8 @@ function App() {
         <Route path="/Register" element={<Register />}/>
         <Route path="/Display" element={<ImageDisplay />}/>
       </Routes> 
-      {/* <NavBar></NavBar> */}
+
+      {/* Old NavBar is ./components/navbar: <NavBar></NavBar> */}
     </BrowserRouter>
   );
 }
