@@ -1,0 +1,8 @@
+/* Currently working on: https://stackoverflow.com/questions/51973629/justify-content-between-inside-nav-bar-in-bootstrap */
+.navbar-nav,
+.mr-auto {
+flex: 1;
+margin: auto !important;
+display: flex;
+justify-content: space-between;
+}
