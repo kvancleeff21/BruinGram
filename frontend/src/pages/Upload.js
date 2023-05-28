@@ -28,6 +28,7 @@ export default function Upload() {
     const [status, setStatus] = useState('typing');
     const [error, setError] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);
+    const [previewImage, setPreviewImage] = useState(null);
 
 
     if (status === 'success') {
@@ -53,8 +54,8 @@ export default function Upload() {
     function handleTagChange(e) {
       setTagged(e.target.value);
     }
-    // Image Uploading
 
+    // Image Uploading
     const handleImageUpload = async () => {
       try {
         const formData = new FormData();
@@ -73,7 +74,9 @@ export default function Upload() {
     };
   
     const handleImageChange = (event) => {
-      setSelectedImage(event.target.files[0]);
+      const selectedFile = event.target.files[0];
+      setSelectedImage(selectedFile);
+      setPreviewImage(URL.createObjectURL(selectedFile));
     };
 
     return (
@@ -95,6 +98,7 @@ export default function Upload() {
           </div>
           <div className="row">
             <input type="file" accept="image/*" onChange={handleImageChange} />
+            {previewImage && <img src={previewImage} alt="Preview" style={{ width: '200px' }} />}
             <button onClick={handleImageUpload}>Upload Image</button>
           </div>
 
