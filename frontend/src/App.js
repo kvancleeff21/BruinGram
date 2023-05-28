@@ -34,6 +34,7 @@ function App() {
         {/* Left */}
         <div class="">
           <ul className="navbar-nav">
+            <li className="nav-item"><Link to="/Upload" className="nav-link">Upload</Link></li>
             <li className="nav-item"><Link to="/Register" className="nav-link">Register</Link></li>
             <li className="nav-item"><Link to="/Login" className="nav-link">Login</Link></li>
             <li className="nav-item"><Link to="/Display" className="nav-link">Display</Link></li>

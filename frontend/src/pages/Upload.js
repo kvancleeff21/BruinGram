@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
 export default function Upload() {
@@ -26,6 +27,7 @@ export default function Upload() {
     const [images, setImages] = useState([]);
     const [status, setStatus] = useState('typing');
     const [error, setError] = useState(null);
+    const [selectedImage, setSelectedImage] = useState(null);
 
 
     if (status === 'success') {
@@ -51,6 +53,28 @@ export default function Upload() {
     function handleTagChange(e) {
       setTagged(e.target.value);
     }
+    // Image Uploading
+
+    const handleImageUpload = async () => {
+      try {
+        const formData = new FormData();
+        formData.append('image', selectedImage);
+// Need to fix destination, but I think this should work?
+        const response = await axios.post('http://localhost:8000/api/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+  
+        console.log('Image uploaded successfully:', response.data);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    };
+  
+    const handleImageChange = (event) => {
+      setSelectedImage(event.target.files[0]);
+    };
 
     return (
       <div>
@@ -68,6 +92,10 @@ export default function Upload() {
               <option value="Friend 3">Friend 3</option>
             </select>
             {/* <input type="text" onChange={handleTagChange} disabled={status === 'submitting'} /> */}
+          </div>
+          <div className="row">
+            <input type="file" accept="image/*" onChange={handleImageChange} />
+            <button onClick={handleImageUpload}>Upload Image</button>
           </div>
 
           <br></br>
