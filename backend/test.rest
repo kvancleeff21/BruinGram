@@ -58,3 +58,23 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmO
 }
 
 # token! eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmOWQ2MjNkZGMyMTg2MTQzOGI5NjIiLCJlbWFpbCI6ImFiY0BhYmNAZ21haWwuY29tIiwiaWF0IjoxNjg1MDM2Mzg2LCJleHAiOjE2ODUxMjI3ODZ9.2H86_gNaip8aMmzZfn6PAacrnHEE9kGziV-q3L0MiaI
+###
+POST / HTTP/1.1
+Host: localhost:8000/upload
+//Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY2MxZmI4MzE5NWUxYzU2Y2IyYmUiLCJlbWFpbCI6ImFiY0BhYmMuY29tIiwiaWF0IjoxNjg1Mzk1OTM0LCJleHAiOjE2ODU0ODIzMzR9.I2wiBKCxhNxXk4okFtv0AdykWX8P5qHN0x2f1HuexAc
+
+{
+
+}
+
+
+### /user/:username
+GET /user/abc@abc.com HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY2MxZmI4MzE5NWUxYzU2Y2IyYmUiLCJlbWFpbCI6ImFiY0BhYmMuY29tIiwiaWF0IjoxNjg1NTk3Nzg2LCJleHAiOjE2ODU2ODQxODZ9.WvTi_wOzWD5aApO1sQZoTUs9tYiPvC0z4xcalj4sttg
+
+{
+
+}

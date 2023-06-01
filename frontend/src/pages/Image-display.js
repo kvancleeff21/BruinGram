@@ -28,9 +28,17 @@ const sharePost = (id)=>{
 const ImageDisplay = ()=>{
     const [data,setData] = useState([])
     useEffect(()=>{ // to fetch using query, add a ? and then your query. ie. type: 'forYou'
-        fetch('http://localhost:8000/?'+ new URLSearchParams({
-            type: 'forYou'
-        }),{
+        // fetch('http://localhost:8000/?'+ new URLSearchParams({
+        //     type: 'forYou'
+        // })
+        let username = localStorage.getItem("user");
+        //const encodedUsername = encodeURIComponent(username);
+        username = username.replace(/"/g, '');
+        console.log(username);
+        const url = `http://localhost:8000/user/${username}`;
+        console.log(url);
+        fetch(url
+        ,{
             headers:{
                 "Content-Type":"application/json",
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
@@ -43,7 +51,7 @@ const ImageDisplay = ()=>{
     },[])
 
     return (
-    <div style={{overflowX:'hidden'}}>
+    <div style={{overflowX:'hidden', paddingLeft:"50px"}}>
         <h1>Image selection/display/pop up thing Page</h1>
 
         {data.map(item=>{
@@ -57,25 +65,43 @@ const ImageDisplay = ()=>{
                             flexDirection:'column',
                             justifyContent:'space-evenly', 
                             }}>
-                            <h4>{item.username}</h4> 
-                            <h4>{item.email}</h4>
+                            <h4>{item.user.username}</h4> 
+                            <h4>{item.user.email}</h4>
                         </div>
                     </div>
                     <div className='main'>
-                        <div className='pic'>
-                            <img  alt="post" src='https://www.summerdiscovery.com/uploads/locations/2/thumbnails/UCLACampus-1_480x480.webp'/>
+                        {item.postAssets.map(item=>{
+                            <img  alt="post" src={item}/>
+                        })}
+
+                        <div className='pic' style={{width:"480px", height:"480px"}}>
+                            {item.postAssets.map(item=>{
+                                return(
+                                <img  alt="post" src={item} style={{width:"480px", height:"480px", objectFit:"cover"}}/>
+                                )
+                            })}
+                            {/* <img  alt="post" src={item.postAssets[0]} style={{width:"480px", height:"480px", objectFit:"cover"}}/> */}
                         </div>
                         <div className='description'>
                             <h3>Description</h3>
-                            <p>Hello there. asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasgegegegegegewgwgwggwgwgqgqg</p>
+                            <p>{item.description}</p>
+                            {/* <h5>{item.postAssets}</h5>
+                            {item.postAssets.map(t=>{
+                                return(
+                                    <div>
+                                        <p>Hello</p>
+                                        <p>{t}</p>    
+                                    </div>
+                                    )
+                            })} */}
                         </div>
                     </div>
                     <div className='interact'>
                         <button onClick={()=>{likePost(50)}}>like</button>
-                        <p>40</p>
+                        <p>{item.likesCount}</p>
                         <button onClick={()=>{sharePost(50)}}>share</button>
-                        <p>10</p>
-                        <p>timestamp</p>
+                        <p>{item.sharesCount}</p>
+                        <p>{item.createdAt}</p>
                     </div>
 
                 </div>

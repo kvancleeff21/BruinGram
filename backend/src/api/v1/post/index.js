@@ -12,6 +12,6 @@ const {
 router.get("/", verifyToken, getPosts);
 router.get("/:postId", verifyToken, getPost);
 router.get("/user/:username", verifyToken, getPostsOfUser);
-router.post("/", verifyToken, multer.upload.array("assets"), createPost);
+router.post("/", verifyToken, multer.upload.array("files"), createPost);
 
 module.exports = router;
