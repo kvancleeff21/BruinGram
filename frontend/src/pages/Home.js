@@ -144,10 +144,10 @@ const Home = ()=>{
             <h3>Follow: {!profileData.isFollow && <p>no</p>}</h3>
             <h3>Followers: {profileData.followersCount}</h3>
             <h3>Following: {profileData.followingsCount}</h3>
-            <h3>Bio: {profileData.bio}</h3>
-            <h3>{profileData.updatedAt}</h3>
-            <h3>{profileData.createdAt}</h3>
-            <h3>Total Posts: {profileData.postCount}</h3>
+            <h5>Bio: {profileData.bio}</h5>
+            <h5>Last Active: {profileData.updatedAt}</h5>
+            <h5>Created: {profileData.createdAt}</h5>
+            <h5>Total Posts: {profileData.postCount}</h5>
         </div>
 
         {/* <Main /> */}
@@ -155,7 +155,8 @@ const Home = ()=>{
         <div className='forYou'>
             {forYouData.map(item=>{
                 return(
-                    <h5>{item.username}</h5>
+                    <h5 onClick={()=>{navigate(`user/${item.username}`)}}>{item.username}</h5>
+                    
                 )
             })}
         </div>
@@ -174,23 +175,12 @@ const Home = ()=>{
                     <div className='m'>
 
                         <div className='pic' style={{width:"480px", height:"480px"}}>
-                                <img  
-                                alt="posts" 
-                                src={item.postAssets[0]} 
-                                style={{width:"480px", height:"480px", objectFit:"cover"}}
-                                onClick={()=>{navigate(`/${item._id}`)}}
-                                />
-                            {/* {item.postAssets.map(t=>{
-                                return(
-                                <img  
-                                alt="posts" 
-                                src={t} 
-                                style={{width:"480px", height:"480px", objectFit:"cover"}}
-                                onClick={()=>{navigate(`/${item._id}`)}}
-                                />
-                                )
-                            })} */}
-                            {/* <img  alt="post" src={item.postAssets[0]} style={{width:"480px", height:"480px", objectFit:"cover"}}/> */}
+                            <img  
+                            alt="posts" 
+                            src={item.postAssets[0]} 
+                            style={{width:"480px", height:"480px", objectFit:"cover"}}
+                            onClick={()=>{navigate(`post/${item._id}`)}}
+                            />
                         </div>
                         <div>
                             <h5 style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.description}</h5>

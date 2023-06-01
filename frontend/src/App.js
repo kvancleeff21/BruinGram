@@ -11,6 +11,7 @@ import Upload from './pages/Upload';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ImageDisplay from './pages/Image-display';
+import UserProfile from './pages/Userprofile'
 
 import logo from "./logo.svg";
 
@@ -66,7 +67,8 @@ function App() {
         <Route path="/Upload" element={<Upload />}/>
         <Route path="/Login" element={<Login />}/>
         <Route path="/Register" element={<Register />}/>
-        <Route path="/:postid" element={<ImageDisplay />}/>
+        <Route path="/post/:postId" element={<ImageDisplay />}/>
+        <Route path="/user/:userId" element={<UserProfile />}/>
       </Routes> 
 
       {/* Old NavBar is ./components/navbar: <NavBar></NavBar> */}

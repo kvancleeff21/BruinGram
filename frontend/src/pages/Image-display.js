@@ -28,12 +28,12 @@ const sharePost = (id)=>{
 
 const ImageDisplay = ()=>{
     //const navigate = useNavigate();
-    const {postid} = useParams()
+    const {postId} = useParams()
     const [data,setData] = useState([])
     // It seems that username is not set up correctly when data is set
     // So trying to access it causes an error. Using a separate state allows us to only use it if its ready
     const [username,setUsername] = useState([])
-    console.log("Post ID " + postid)
+    console.log("Post ID " + postId)
     useEffect(()=>{ // to fetch using query, add a ? and then your query. ie. type: 'forYou'
         // fetch('http://localhost:8000/?'+ new URLSearchParams({
         //     type: 'forYou'
@@ -42,7 +42,7 @@ const ImageDisplay = ()=>{
         //const encodedUsername = encodeURIComponent(username);
         //username = username.replace(/"/g, '');
         //console.log(username);
-        const url = `http://localhost:8000/post/${postid}`;
+        const url = `http://localhost:8000/post/${postId}`;
         console.log(url);
         fetch(url
         ,{
