@@ -70,8 +70,10 @@
 
 .comments{
     max-width: 600px;
-    display: flex;
     text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .comments p{

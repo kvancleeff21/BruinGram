@@ -80,7 +80,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY
 }
 
 ###
-GET /6478cf38593c3e879d9edccd HTTP/1.1
+GET /post/6478cf38593c3e879d9edccd HTTP/1.1
 Host: localhost:8000
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY2MxZmI4MzE5NWUxYzU2Y2IyYmUiLCJlbWFpbCI6ImFiY0BhYmMuY29tIiwiaWF0IjoxNjg1NTk3Nzg2LCJleHAiOjE2ODU2ODQxODZ9.WvTi_wOzWD5aApO1sQZoTUs9tYiPvC0z4xcalj4sttg
@@ -90,7 +90,27 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY
 }
 
 ###
-GET /6478e6c9277a77b62cf05dd9 HTTP/1.1
+GET /abc@abc.com HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY2MxZmI4MzE5NWUxYzU2Y2IyYmUiLCJlbWFpbCI6ImFiY0BhYmMuY29tIiwiaWF0IjoxNjg1NTk3Nzg2LCJleHAiOjE2ODU2ODQxODZ9.WvTi_wOzWD5aApO1sQZoTUs9tYiPvC0z4xcalj4sttg
+
+{
+
+}
+
+### /user/:username
+GET /post/123 HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY2MxZmI4MzE5NWUxYzU2Y2IyYmUiLCJlbWFpbCI6ImFiY0BhYmMuY29tIiwiaWF0IjoxNjg1NTk3Nzg2LCJleHAiOjE2ODU2ODQxODZ9.WvTi_wOzWD5aApO1sQZoTUs9tYiPvC0z4xcalj4sttg
+
+{
+
+}
+
+### /user/:username getting post comments
+GET /react/6478cf38593c3e879d9edccd HTTP/1.1
 Host: localhost:8000
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY2MxZmI4MzE5NWUxYzU2Y2IyYmUiLCJlbWFpbCI6ImFiY0BhYmMuY29tIiwiaWF0IjoxNjg1NTk3Nzg2LCJleHAiOjE2ODU2ODQxODZ9.WvTi_wOzWD5aApO1sQZoTUs9tYiPvC0z4xcalj4sttg

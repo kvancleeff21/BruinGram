@@ -155,7 +155,7 @@ const Home = ()=>{
         <div className='forYou'>
             {forYouData.map(item=>{
                 return(
-                    <h5 onClick={()=>{navigate(`user/${item.username}`)}}>{item.username}</h5>
+                    <h5 onClick={()=>{navigate(`/user/${item.username}`, { replace: true })}}>{item.username}</h5>
                     
                 )
             })}
@@ -179,7 +179,7 @@ const Home = ()=>{
                             alt="posts" 
                             src={item.postAssets[0]} 
                             style={{width:"480px", height:"480px", objectFit:"cover"}}
-                            onClick={()=>{navigate(`post/${item._id}`)}}
+                            onClick={()=>{navigate(`/post/${item._id}`, { replace: true })}}
                             />
                         </div>
                         <div>

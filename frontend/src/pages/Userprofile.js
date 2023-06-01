@@ -109,7 +109,7 @@ export default function UserProfile(){
                             alt="posts" 
                             src={item.postAssets[0]} 
                             style={{width:"480px", height:"480px", objectFit:"cover"}}
-                            onClick={()=>{navigate(`/${item._id}`)}}
+                            onClick={()=>{navigate(`/post/${item._id}`, { replace: true })}}
                             />
                         </div>
                         <div>

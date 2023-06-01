@@ -2,34 +2,16 @@ import React,{useState, useEffect} from "react";
 import { useParams, Link, useNavigate  } from "react-router-dom";
 import "../css/Image-display.css"
 
-const makeComment = (userId, postId, comment)=>{
-    // fetch("http://localhost:8000/comment" ,{
-    //     method:"put",
-    //     headers:{
-    //         "Content-Type":"application/json",
-    //         "Authorization":"Bearer "+localStorage.getItem("jwt")
-    //     },
-    //     body:JSON.stringify({
-    //         postId,
-    //         text
-    //     })
-    // })
-    alert("User: "+ userId +" commented " + comment + "on post:" + postId);
-}
 
-const likePost = (id)=>{
-    alert("You liked a post!" + id);
-}
-
-const sharePost = (id)=>{
-    alert("You shared a post???!" + id);
-}
 
 
 const ImageDisplay = ()=>{
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const {postId} = useParams()
     const [data,setData] = useState([])
+    const [comments,setComments] = useState([])
+    const [reactions,setReactions] = useState([])
+
     // It seems that username is not set up correctly when data is set
     // So trying to access it causes an error. Using a separate state allows us to only use it if its ready
     const [username,setUsername] = useState([])
@@ -42,6 +24,8 @@ const ImageDisplay = ()=>{
         //const encodedUsername = encodeURIComponent(username);
         //username = username.replace(/"/g, '');
         //console.log(username);
+
+        // Fetch Post
         const url = `http://localhost:8000/post/${postId}`;
         console.log(url);
         fetch(url
@@ -60,8 +44,80 @@ const ImageDisplay = ()=>{
         .catch(err=>{
             console.log(err)
         })
-    },[])
 
+        // Fetch Comments
+        fetch(`http://localhost:8000/comment/${postId}`
+        ,{
+            method:"get",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log("comments")
+            console.log(result)
+            setComments(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            //setUsername(result.data.user.username)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+
+        // Fetch Reactions
+        fetch(`http://localhost:8000/react/${postId}`
+        ,{
+            method:"get",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log("reactions")
+            console.log(result)
+            setReactions(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            //setUsername(result.data.user.username)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+
+    },[postId])
+
+    const makeComment = (comment)=>{
+        fetch(`http://localhost:8000/comment/${postId}`
+        ,{
+            method:"post",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            },
+            body:JSON.stringify({
+                comment:comment
+            })
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log("Posted Comment")
+            console.log(result)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        //alert("User commented " + comment + "on post:" + postId);
+        window.location.reload(false);
+
+        
+    }
+
+
+    const likePost = (id)=>{
+        alert("You liked a post!" + id);
+    }
+
+    const sharePost = (id)=>{
+        alert("You shared a post???!" + id);
+    }
     return (
     <div style={{overflowX:'hidden', paddingLeft:"50px"}}>
         <h1>Image selection/display/pop up thing Page</h1>
@@ -77,7 +133,7 @@ const ImageDisplay = ()=>{
                     justifyContent:'space-evenly', 
                     }}>
                     <h4>Title</h4>
-                    <h4>{username}</h4>
+                    <h4 onClick={()=>{navigate(`/user/${username}`, { replace: true })}}>{username}</h4>
                     {console.log(username)}
                 </div>
             </div>
@@ -119,7 +175,7 @@ const ImageDisplay = ()=>{
 
             <form onSubmit={(e)=>{
                 e.preventDefault()
-                makeComment('User001', e.target[0].value, 50)
+                makeComment(e.target[0].value)
                 }}>
 
                 <input type="text" placeholder="add a comment"/>
@@ -128,7 +184,16 @@ const ImageDisplay = ()=>{
 
 
             <div className='comments'>
-                <h3>Someone</h3> <p> This is a comment</p>
+                {comments.map(item=>{
+                    return(
+                        <div>
+                            <h5>{item.user.username}: {item.content}</h5>
+                            <div className='timestamp'>{item.createdAt}</div>
+                        </div>
+                    )
+                })}
+                {console.log("printing comments!!")}
+                {console.log(comments)}
             </div>
         </div>
     </div>
