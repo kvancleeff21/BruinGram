@@ -152,10 +152,10 @@ const Home = ()=>{
 
         {/* <Main /> */}
         <h2>For You</h2>
-        <div className='forYou'>
+        <div className='forYou' style={{display:"flex"}}>
             {forYouData.map(item=>{
                 return(
-                    <h5 onClick={()=>{navigate(`/user/${item.username}`, { replace: true })}}>{item.username}</h5>
+                    <h5 onClick={()=>{navigate(`/user/${item.username}`, { replace: true })}}> | {item.username} | </h5>
                     
                 )
             })}

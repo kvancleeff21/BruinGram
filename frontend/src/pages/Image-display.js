@@ -111,8 +111,25 @@ const ImageDisplay = ()=>{
     }
 
 
-    const likePost = (id)=>{
-        alert("You liked a post!" + id);
+    const likePost = ()=>{
+        //alert("You liked a post!" + id);
+        fetch(`http://localhost:8000/react/${postId}`
+        ,{
+            method:"post",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log("Liked a post! -> reactions")
+            console.log(result)
+            setReactions(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            window.location.reload(false);
+        })
+        .catch(err=>{
+            console.log(err)
+        })
     }
 
     const sharePost = (id)=>{
@@ -132,7 +149,7 @@ const ImageDisplay = ()=>{
                     flexDirection:'column',
                     justifyContent:'space-evenly', 
                     }}>
-                    <h4>Title</h4>
+                    
                     <h4 onClick={()=>{navigate(`/user/${username}`, { replace: true })}}>{username}</h4>
                     {console.log(username)}
                 </div>
@@ -161,11 +178,10 @@ const ImageDisplay = ()=>{
                 </div>
             </div>
             <div className='interact'>
-                <button onClick={()=>{likePost(50)}}>like</button>
-                <p>{data.likesCount}</p>
-                <button onClick={()=>{sharePost(50)}}>share</button>
-                <p>10</p>
-                <p>timestamp</p>
+                <button onClick={()=>{likePost()}}> {data.likesCount} likes </button>
+                {/* <button onClick={()=>{sharePost(50)}}>share</button>
+                <p>10</p> */}
+                <p>{data.createdAt}</p>
             </div>
 
         </div>
