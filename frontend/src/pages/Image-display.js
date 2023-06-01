@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from "react";
+import { useParams, Link, useNavigate  } from "react-router-dom";
 import "../css/Image-display.css"
 
 const makeComment = (userId, postId, comment)=>{
@@ -26,19 +27,26 @@ const sharePost = (id)=>{
 
 
 const ImageDisplay = ()=>{
+    //const navigate = useNavigate();
+    const {postid} = useParams()
     const [data,setData] = useState([])
+    // It seems that username is not set up correctly when data is set
+    // So trying to access it causes an error. Using a separate state allows us to only use it if its ready
+    const [username,setUsername] = useState([])
+    console.log("Post ID " + postid)
     useEffect(()=>{ // to fetch using query, add a ? and then your query. ie. type: 'forYou'
         // fetch('http://localhost:8000/?'+ new URLSearchParams({
         //     type: 'forYou'
         // })
-        let username = localStorage.getItem("user");
+        //let username = localStorage.getItem("user");
         //const encodedUsername = encodeURIComponent(username);
-        username = username.replace(/"/g, '');
-        console.log(username);
-        const url = `http://localhost:8000/user/${username}`;
+        //username = username.replace(/"/g, '');
+        //console.log(username);
+        const url = `http://localhost:8000/post/${postid}`;
         console.log(url);
         fetch(url
         ,{
+            method:"get",
             headers:{
                 "Content-Type":"application/json",
                 "Authorization":"Bearer "+localStorage.getItem("jwt")
@@ -47,66 +55,16 @@ const ImageDisplay = ()=>{
         .then(result=>{
             console.log(result)
             setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            setUsername(result.data.user.username)
+        })
+        .catch(err=>{
+            console.log(err)
         })
     },[])
 
     return (
     <div style={{overflowX:'hidden', paddingLeft:"50px"}}>
         <h1>Image selection/display/pop up thing Page</h1>
-
-        {data.map(item=>{
-            return(
-                <div className='post'>
-                    <div className='info'>
-                        <img  className='pfp' alt="pfp" src='https://m.media-amazon.com/images/I/81QUHsETINL.jpg'/>
-                        
-                        <div style={{
-                            display:'flex', 
-                            flexDirection:'column',
-                            justifyContent:'space-evenly', 
-                            }}>
-                            <h4>{item.user.username}</h4> 
-                            <h4>{item.user.email}</h4>
-                        </div>
-                    </div>
-                    <div className='main'>
-                        {item.postAssets.map(item=>{
-                            <img  alt="post" src={item}/>
-                        })}
-
-                        <div className='pic' style={{width:"480px", height:"480px"}}>
-                            {item.postAssets.map(item=>{
-                                return(
-                                <img  alt="post" src={item} style={{width:"480px", height:"480px", objectFit:"cover"}}/>
-                                )
-                            })}
-                            {/* <img  alt="post" src={item.postAssets[0]} style={{width:"480px", height:"480px", objectFit:"cover"}}/> */}
-                        </div>
-                        <div className='description'>
-                            <h3>Description</h3>
-                            <p>{item.description}</p>
-                            {/* <h5>{item.postAssets}</h5>
-                            {item.postAssets.map(t=>{
-                                return(
-                                    <div>
-                                        <p>Hello</p>
-                                        <p>{t}</p>    
-                                    </div>
-                                    )
-                            })} */}
-                        </div>
-                    </div>
-                    <div className='interact'>
-                        <button onClick={()=>{likePost(50)}}>like</button>
-                        <p>{item.likesCount}</p>
-                        <button onClick={()=>{sharePost(50)}}>share</button>
-                        <p>{item.sharesCount}</p>
-                        <p>{item.createdAt}</p>
-                    </div>
-
-                </div>
-            )
-        })}
 
 
         <div className='post'>
@@ -118,22 +76,37 @@ const ImageDisplay = ()=>{
                     flexDirection:'column',
                     justifyContent:'space-evenly', 
                     }}>
-                    <h4>Title</h4> 
-                    <h4>Author</h4>
+                    <h4>Title</h4>
+                    <h4>{username}</h4>
+                    {console.log(username)}
                 </div>
             </div>
             <div className='main'>
                 <div className='pic'>
-                    <img  alt="post" src='https://www.summerdiscovery.com/uploads/locations/2/thumbnails/UCLACampus-1_480x480.webp'/>
+                    {Array.isArray(data.postAssets) &&
+                        <div>
+                            {data.postAssets.map(m=>{
+                                return (
+                                    <div>
+                                        <img  
+                                        alt="posts" 
+                                        src={m} 
+                                        style={{width:"800px", height:"800px", objectFit:"cover"}}
+                                        />
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    }
                 </div>
                 <div className='description'>
                     <h3>Description</h3>
-                    <p>Hello there. asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasgegegegegegewgwgwggwgwgqgqg</p>
+                    <p>{data.description}</p>
                 </div>
             </div>
             <div className='interact'>
                 <button onClick={()=>{likePost(50)}}>like</button>
-                <p>40</p>
+                <p>{data.likesCount}</p>
                 <button onClick={()=>{sharePost(50)}}>share</button>
                 <p>10</p>
                 <p>timestamp</p>
@@ -142,7 +115,7 @@ const ImageDisplay = ()=>{
         </div>
 
         <div className='commentsBox'>
-            <h2>Comments 20</h2>
+            <h2>Comments {data.commentsCount}</h2>
 
             <form onSubmit={(e)=>{
                 e.preventDefault()

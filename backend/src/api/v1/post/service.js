@@ -171,7 +171,7 @@ const getPost = async (req, next) => {
                             if: {
                                 $eq: [
                                     "$post_reaction.userId",
-                                    ObjectId(userId),
+                                    new ObjectId(userId),
                                 ],
                             },
                             then: true,

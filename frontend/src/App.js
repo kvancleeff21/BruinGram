@@ -37,7 +37,6 @@ function App() {
             <li className="nav-item"><Link to="/Upload" className="nav-link">Upload</Link></li>
             <li className="nav-item"><Link to="/Register" className="nav-link">Register</Link></li>
             <li className="nav-item"><Link to="/Login" className="nav-link">Login</Link></li>
-            <li className="nav-item"><Link to="/Display" className="nav-link">Display</Link></li>
             <li className="nav-item"><Link to="/" className="nav-link">Profile</Link></li>
           </ul>
         </div>
@@ -67,7 +66,7 @@ function App() {
         <Route path="/Upload" element={<Upload />}/>
         <Route path="/Login" element={<Login />}/>
         <Route path="/Register" element={<Register />}/>
-        <Route path="/Display" element={<ImageDisplay />}/>
+        <Route path="/:postid" element={<ImageDisplay />}/>
       </Routes> 
 
       {/* Old NavBar is ./components/navbar: <NavBar></NavBar> */}

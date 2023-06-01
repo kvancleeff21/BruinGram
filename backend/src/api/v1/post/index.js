@@ -10,7 +10,7 @@ const {
 } = require("./controller");
 
 router.get("/", verifyToken, getPosts);
-router.get("/:postId", verifyToken, getPost);
+router.get("/post/:postId", verifyToken, getPost);
 router.get("/user/:username", verifyToken, getPostsOfUser);
 router.post("/", verifyToken, multer.upload.array("files"), createPost);
 
