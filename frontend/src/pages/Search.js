@@ -17,6 +17,10 @@ export default function Search(){
             console.log(result)
             setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
         })
+        .catch(err=>{
+            alert(err);
+            console.log(err)
+          })
     },[])
 
     const search = (input)=>{
@@ -30,6 +34,10 @@ export default function Search(){
             console.log(result)
             setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
         })
+        .catch(err=>{
+            alert(err);
+            console.log(err)
+          })
     }
     // search 
     // fetch('http://localhost:8000/?'+ new URLSearchParams({

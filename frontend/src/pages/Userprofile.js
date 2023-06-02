@@ -18,26 +18,6 @@ export default function UserProfile(){
      
     useEffect(()=>{ // to fetch using query, add a ? and then your query. ie. type: 'forYou'
         getPosts();
-        // Fetch the user profile
-        // Fetch the user's posts
-        // let username = userId
-        // username = username.replace(/"/g, '');
-        // console.log(username);
-        // const url = `http://localhost:8000/user/${userId}`;
-        // console.log(url);
-        // fetch(url
-        // ,{
-        //     headers:{
-        //         "Content-Type":"application/json",
-        //         "Authorization":"Bearer "+localStorage.getItem("jwt")
-        //     }
-        // }).then(res=>res.json())
-        // .then(result=>{
-        //     console.log(result)
-        //     setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-        //     setPageData(result.meta.pagination) 
-        // })
-
         const userurl = `http://localhost:8000/${userId}`;
         console.log(userurl);
         fetch(userurl
@@ -50,6 +30,10 @@ export default function UserProfile(){
         .then(result=>{
             console.log(result)
             setProfileData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        })
+        .catch(err=>{
+            alert(err);
+            console.log(err)
         })
 
     },[page]);
@@ -67,13 +51,83 @@ export default function UserProfile(){
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log(result)
-            setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-            setPageData(result.meta.pagination) 
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(data.errors));
+                //alert(data.errors.message);
+            }else{
+                console.log(result)
+                setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+                setPageData(result.meta.pagination) 
+            }
+
+        })
+        .catch(err=>{
+            alert(err);
+            console.log(err)
         })
     }
 
+    async function follow() {
+        console.log("USER DATA");
+        console.log(profileData);
+        const url = `http://localhost:8000/follow/${profileData._id}`;
+        console.log(url);
+        fetch(url
+        ,{
+            method:"post",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(data.errors));
+                //alert(data.errors.message);
+            }else{
+                console.log("FOLLOW Succeeded")
+                console.log(result)
+                alert("Follow Succeeded");
+                window.location.reload(false);
+            }
 
+        })
+        .catch(err=>{
+            alert(err);
+            console.log(err)
+        })
+    }
+
+    async function unfollow() {
+        console.log("USER DATA");
+        console.log(profileData);
+        const url = `http://localhost:8000/unfollow/${profileData._id}`;
+        console.log(url);
+        fetch(url
+        ,{
+            method:"post",
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(data.errors));
+                //alert(data.errors.message);
+            }else{
+                console.log("UNFOLLOW Succeeded")
+                console.log(result)
+                alert("UNFollow Succeeded");
+                window.location.reload(false);
+            }
+
+        })
+        .catch(err=>{
+            alert(err);
+            console.log(err)
+        })
+    }
 
     function nextPage(){
         if (page < pageData.totalPages){
@@ -100,7 +154,8 @@ export default function UserProfile(){
         <div className="profile">
             <h1>{profileData.username}</h1>
             <h3>{profileData.email}</h3>
-            <button>Follow: {!profileData.isFollow && <p>no</p>}</button>
+            {!profileData.isFollow && <button onClick={()=>{follow()}}>Follow</button>}
+            {profileData.isFollow && <button onClick={()=>{unfollow()}}>Unfollow</button>}
             <h3>Followers: {profileData.followersCount}</h3>
             <h3>Following: {profileData.followingsCount}</h3>
             <h3>Bio: {profileData.bio}</h3>

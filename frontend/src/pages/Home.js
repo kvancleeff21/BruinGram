@@ -84,9 +84,15 @@ const Home = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log("My info")
-            console.log(result)
-            setMyData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                //alert(result.errors.message);
+            }else{
+                console.log("My info")
+                console.log(result)
+                setMyData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen                
+            }
+
         }).catch(err=>{
             console.log(err)
         })
@@ -101,12 +107,18 @@ const Home = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log("FOR YOU")
-            console.log(result)
-            const temp = result.data
-            const filteredArray = temp.filter((element) => element !== null)
-            console.log(filteredArray)
-            setforYouData(filteredArray) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                //alert(result.errors.message);
+            }else{
+                console.log("FOR YOU")
+                console.log(result)
+                const temp = result.data
+                const filteredArray = temp.filter((element) => element !== null)
+                console.log(filteredArray)
+                setforYouData(filteredArray) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            }
+
         }).catch(err=>{
             console.log(err)
         })
@@ -121,12 +133,18 @@ const Home = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log("Following")
-            console.log(result)
-            const temp = result.data
-            const filteredArray = temp.filter((element) => element !== null)
-            console.log(filteredArray)
-            setFollowingData(filteredArray) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                //alert(result.errors.message);
+            }else{
+                console.log("Following")
+                console.log(result)
+                const temp = result.data
+                const filteredArray = temp.filter((element) => element !== null)
+                console.log(filteredArray)
+                setFollowingData(filteredArray) // data is nested inside an array. Make sure to use this data otherwise weird things happen                
+            }
+
         }).catch(err=>{
             console.log(err)
         })
@@ -154,8 +172,14 @@ const Home = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log(result)
-            setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                alert(result.errors.message);
+            }else{
+                console.log(result)
+                setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen                
+            }
+
         }).catch(err=>{
             console.log(err)
         })
@@ -200,7 +224,7 @@ const Home = ()=>{
         <h2>Your Posts</h2>
         <div className='posts' style={{display:"flex", flexWrap:"wrap", rowGap:"10px", paddingLeft:"20px"}}>
             {data.length == 0 && <b1>You have no posts</b1>}
-            {data.map(item=>{
+            {data.length != 0 && data.map(item=>{
                 return(
                     <div className='m'>
 
@@ -222,11 +246,29 @@ const Home = ()=>{
             })}
         </div>
         <h2>Following</h2>
-        <div className='following'>
+        <div className='following'  style={{display:"flex", flexWrap:"wrap"}}>
             {followingData.length == 0 && <b1>You are not following anyone</b1>}
-            {followingData.map(item=>{
+            {followingData.length != 0 && followingData.map(item=>{
                 return(
-                    <h5>{item.username}</h5>
+                    <div className='posts' style={{display:"flex", flexWrap:"wrap", rowGap:"10px", paddingLeft:"20px"}}>
+                        <div className='m'>
+
+                            <div className='pic' style={{width:"200px", height:"200px"}}>
+                                <img  
+                                alt="posts" 
+                                src={item.postAssets[0]} 
+                                style={{width:"200px", height:"200px", objectFit:"cover"}}
+                                onClick={()=>{navigate(`/post/${item._id}`)}}
+                                />
+                            </div>
+                            <div>
+                                <h6 style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.user.username}</h6>
+                                <div style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                                    {item.likesCount} Likes {item.commentsCount} Comments </div>
+                                <div style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.description}</div>
+                            </div>
+                        </div>
+                    </div>
                 )
             })}
         </div>
@@ -241,7 +283,7 @@ const Home = ()=>{
             {forYouData.length == 0 && <b1>There are no posts</b1>}
             <div className='posts' style={{display:"flex", flexWrap:"wrap", rowGap:"10px", paddingLeft:"20px"}}>
                 
-                {forYouData.map(item=>{
+                {forYouData.length != 0 &&forYouData.map(item=>{
                     return(
                         <div className='m'>
 
