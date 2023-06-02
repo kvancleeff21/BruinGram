@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Divide into three equal columns */
+  grid-column-gap: 1rem; /* Adjust the gap between columns */
+  align-items: center; /* Center the items vertically */
+}

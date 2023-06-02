@@ -131,5 +131,5 @@ Content-Type: application/json
 }
 
 ###
-GET /search/?q=Fred HTTP/1.1
+GET /search/?q=zxy HTTP/1.1
 Host: localhost:8000
