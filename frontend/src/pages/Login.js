@@ -1,6 +1,6 @@
-import React from 'react'
-import { useState } from 'react';
+import React,{useState,useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {UserContext} from '../App.js'
 //import logo from './;
 // const Login = ()=>{
 //     return (
@@ -23,6 +23,7 @@ function Header() {
   }
   
   export default function Login() {
+    const {state,dispatch} = useContext(UserContext)
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -46,8 +47,10 @@ function Header() {
           }else{
               localStorage.setItem("jwt",data.meta.token)
               localStorage.setItem("user",JSON.stringify(data.data.username))
+              dispatch({type:"USER", payload:data.user})
               console.log("SUCCESS!!!! logged in");
               navigate("/");
+              window.location.reload(false);
           }
       })
       .catch(err=>{

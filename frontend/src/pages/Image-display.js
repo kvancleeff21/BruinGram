@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import { useParams, Link, useNavigate  } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
 import "../css/Image-display.css"
 
 
@@ -10,7 +10,7 @@ const ImageDisplay = ()=>{
     const {postId} = useParams()
     const [data,setData] = useState([])
     const [comments,setComments] = useState([])
-    const [reactions,setReactions] = useState([])
+    const [setReactions] = useState([])
 
     // It seems that username is not set up correctly when data is set
     // So trying to access it causes an error. Using a separate state allows us to only use it if its ready

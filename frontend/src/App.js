@@ -1,5 +1,5 @@
 import React, {useEffect, createContext, useReducer, useContext} from 'react';
-import {BrowserRouter, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import {BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
 
 // import "./css/App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,7 +14,6 @@ import ImageDisplay from './pages/Image-display';
 import UserProfile from './pages/Userprofile';
 import Search from "./pages/Search";
 
-import logo from "./logo.svg";
 
 import {reducer, initialState} from './reducers/userReducer'
 
@@ -29,13 +28,16 @@ const Routing = ()=>{
   const {state,dispatch} = useContext(UserContext)
 
   useEffect(()=>{
+    console.log(state)
     const user = JSON.parse(localStorage.getItem("user"))
     if(user){
       dispatch({ type: "USER", payload:user})
     }else{
       navigate("/Login")
+      //console.log("navigate to login")
     }
   },[])
+
   return(
     <>
       <Routes>
@@ -55,7 +57,7 @@ const Routing = ()=>{
 
 function App() {
   const [state,dispatch] = useReducer(reducer,initialState)
-  //const user = JSON.parse(localStorage.getItem("user"))
+  const user = JSON.parse(localStorage.getItem("user"))
 
   return (
   <UserContext.Provider value={{state,dispatch}}>

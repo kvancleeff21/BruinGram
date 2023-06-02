@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from "react";
-import { useParams, Link, useNavigate  } from "react-router-dom";
+import { useParams, useNavigate  } from "react-router-dom";
 
 export default function UserProfile(){
     const {userId} = useParams()
@@ -51,37 +51,6 @@ export default function UserProfile(){
             console.log(result)
             setProfileData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
         })
-
-
-        // fetch('http://localhost:8000/?'+ new URLSearchParams({
-        //      type: 'forYou'
-        //  })
-        // ,{
-        //     headers:{
-        //         "Content-Type":"application/json",
-        //         "Authorization":"Bearer "+localStorage.getItem("jwt")
-        //     }
-        // }).then(res=>res.json())
-        // .then(result=>{
-        //     console.log(result)
-        //     setforYouData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-        // })
-
-        // fetch('http://localhost:8000/?'+ new URLSearchParams({
-        //      type: 'following'
-        //  })
-        // ,{
-        //     headers:{
-        //         "Content-Type":"application/json",
-        //         "Authorization":"Bearer "+localStorage.getItem("jwt")
-        //     }
-        // }).then(res=>res.json())
-        // .then(result=>{
-        //     console.log("Following")
-        //     console.log(result)
-        //     setFollowingData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-        // })
-
 
     },[page]);
 
@@ -142,7 +111,7 @@ export default function UserProfile(){
 
         <h2> {profileData.postCount} Posts </h2>
         <div className='posts' style={{display:"flex", flexWrap:"wrap", rowGap:"10px", paddingLeft:"20px"}}>
-            {data.length == 0 && <h4>User has no posts</h4>}
+            {data.length === 0 && <h4>User has no posts</h4>}
             {data.map(item=>{
                 return(
                     <div className='m'>

@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
+//import axios from 'axios';
 
 
 export default function Upload() {
     document.title = 'BruinGram | New Post';
 
     // current user, must be signed in
-    const [user, setUser] = useState(-1); 
+    // const [user, setUser] = useState(-1); 
     const [caption, setCaption] = useState('');
-    const [author, setAuthor] = useState('');
+    // const [author, setAuthor] = useState('');
     const [tagged, setTagged] = useState([]);
-    const [likes, setLikes] = useState(1);
-    const [comments, setComments] = useState([]);
+    // const [likes, setLikes] = useState(1);
+    // const [comments, setComments] = useState([]);
 
     // const [newPost, setPost] = useState({ 
     //   caption: '',
@@ -24,7 +24,7 @@ export default function Upload() {
     // });
     // handling multiple images
 
-    const [images, setImages] = useState([]);
+    // const [images, setImages] = useState([]);
     const [status, setStatus] = useState('typing');
     const [error, setError] = useState(null);
     const [selectedImage, setSelectedImage] = useState(null);

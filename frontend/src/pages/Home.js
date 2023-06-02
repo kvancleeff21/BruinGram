@@ -1,5 +1,6 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect,useContext} from "react";
 import {Link, useNavigate  } from "react-router-dom";
+import {UserContext} from '../App.js'
 //import "../css/Image-display.css"
 // import axios from 'axios'
 // import {CloudinaryContext, Transformation, Image} from 'cloudinary-react'
@@ -64,20 +65,18 @@ import {Link, useNavigate  } from "react-router-dom";
 // }
 
 const Home = ()=>{
+    const {state,dispatch} = useContext(UserContext)
     const navigate = useNavigate();
     const [data,setData] = useState([])
+    const [myData,setMyData] = useState([])
     const [forYouData,setforYouData] = useState([])
     const [followingData,setFollowingData] = useState([])
     const [profileData,setProfileData] = useState([])
      
-    useEffect(()=>{ // to fetch using query, add a ? and then your query. ie. type: 'forYou'
-
-        let username = localStorage.getItem("user");
-        username = username.replace(/"/g, '');
-        console.log(username);
-        const url = `http://localhost:8000/user/${username}`;
-        console.log(url);
-        fetch(url
+    useEffect(()=>{ // to fetch using query, add a ? and then your query. ex. type: 'forYou'
+        //const url = `http://localhost:8000/user/${username}`;
+        //console.log(url);
+        fetch("http://localhost:8000/me"
         ,{
             headers:{
                 "Content-Type":"application/json",
@@ -85,28 +84,12 @@ const Home = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
+            console.log("My info")
             console.log(result)
-            setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            setMyData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
         }).catch(err=>{
             console.log(err)
         })
-
-        const userurl = `http://localhost:8000/${username}`;
-        console.log(userurl);
-        fetch(userurl
-        ,{
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
-            }
-        }).then(res=>res.json())
-        .then(result=>{
-            console.log(result)
-            setProfileData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-        }).catch(err=>{
-            console.log(err)
-        })
-
 
         fetch('http://localhost:8000/?'+ new URLSearchParams({
              type: 'forYou'
@@ -148,21 +131,69 @@ const Home = ()=>{
             console.log(err)
         })
 
+        if(!state){
+            console.log("Name not available");
+            return;
+        }
+        console.log("0-0-0-0-0-0-0-0-0-0-");
+        console.log(state);
+        // let username = localStorage.getItem("user");
+        // username = username.replace(/"/g, '');
+        // console.log(username);
+        // let current_name = state.name;
+        // console.log("current name " + current_name);
 
-    },[])
+
+        const url = `http://localhost:8000/user/${state}`;
+        console.log(url);
+        fetch(url
+        ,{
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log(result)
+            setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        }).catch(err=>{
+            console.log(err)
+        })
+
+        // const userurl = `http://localhost:8000/${username}`;
+        // console.log(userurl);
+        // fetch(userurl
+        // ,{
+        //     headers:{
+        //         "Content-Type":"application/json",
+        //         "Authorization":"Bearer "+localStorage.getItem("jwt")
+        //     }
+        // }).then(res=>res.json())
+        // .then(result=>{
+        //     console.log(result)
+        //     setProfileData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        // }).catch(err=>{
+        //     console.log(err)
+        // })
+
+
+        
+
+
+    },[state])
     return (
     <div>
         <h1>Home/Profile Page</h1>
         <div className="profile">
-            <h3>{profileData.username}</h3>
-            <h3>{profileData.email}</h3>
-            <h3>Follow: {!profileData.isFollow && <p>no</p>}</h3>
-            <h3>Followers: {profileData.followersCount}</h3>
-            <h3>Following: {profileData.followingsCount}</h3>
-            <h5>Bio: {profileData.bio}</h5>
-            <h5>Last Active: {profileData.updatedAt}</h5>
-            <h5>Created: {profileData.createdAt}</h5>
-            <h5>Total Posts: {profileData.postCount}</h5>
+            <h3>{myData.username}</h3>
+            <h3>{myData.email}</h3>
+            <h3>Follow: {!myData.isFollow && <p>no</p>}</h3>
+            <h3>Followers: {myData.followersCount}</h3>
+            <h3>Following: {myData.followingsCount}</h3>
+            <h5>Bio: {myData.bio}</h5>
+            <h5>Last Active: {myData.updatedAt}</h5>
+            <h5>Created: {myData.createdAt}</h5>
+            <h5>Total Posts: {myData.postCount}</h5>
         </div>
 
         {/* <Main /> */}
@@ -178,7 +209,7 @@ const Home = ()=>{
                             alt="posts" 
                             src={item.postAssets[0]} 
                             style={{width:"480px", height:"480px", objectFit:"cover"}}
-                            onClick={()=>{navigate(`/post/${item._id}`, { replace: true })}}
+                            onClick={()=>{navigate(`/post/${item._id}`)}}
                             />
                         </div>
                         <div>
@@ -219,7 +250,7 @@ const Home = ()=>{
                                 alt="posts" 
                                 src={item.postAssets[0]} 
                                 style={{width:"200px", height:"200px", objectFit:"cover"}}
-                                onClick={()=>{navigate(`/post/${item._id}`, { replace: true })}}
+                                onClick={()=>{navigate(`/post/${item._id}`)}}
                                 />
                             </div>
                             <div>
