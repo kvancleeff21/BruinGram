@@ -118,3 +118,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY
 {
 
 }
+
+### /user/:username getting post comments
+###
+
+GET /search123/ HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+{
+    "q": "Fred"
+}
+
+###
+GET /search/?q=Fred HTTP/1.1
+Host: localhost:8000

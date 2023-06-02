@@ -37,6 +37,7 @@ const ImageDisplay = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
+            console.log("postData")
             console.log(result)
             setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
             setUsername(result.data.user.username)
@@ -178,6 +179,9 @@ const ImageDisplay = ()=>{
                 </div>
             </div>
             <div className='interact'>
+                {/* {data.isReaction ?
+                    <button onClick={()=>{likePost()}}> {data.likesCount} likes </button> 
+                    :<button onClick={()=>{likePost()}}> {data.likesCount} unlike </button> } */}
                 <button onClick={()=>{likePost()}}> {data.likesCount} likes </button>
                 {/* <button onClick={()=>{sharePost(50)}}>share</button>
                 <p>10</p> */}

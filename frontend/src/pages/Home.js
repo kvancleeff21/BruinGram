@@ -87,6 +87,8 @@ const Home = ()=>{
         .then(result=>{
             console.log(result)
             setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        }).catch(err=>{
+            console.log(err)
         })
 
         const userurl = `http://localhost:8000/${username}`;
@@ -101,6 +103,8 @@ const Home = ()=>{
         .then(result=>{
             console.log(result)
             setProfileData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        }).catch(err=>{
+            console.log(err)
         })
 
 
@@ -114,8 +118,14 @@ const Home = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
+            console.log("FOR YOU")
             console.log(result)
-            setforYouData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            const temp = result.data
+            const filteredArray = temp.filter((element) => element !== null)
+            console.log(filteredArray)
+            setforYouData(filteredArray) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        }).catch(err=>{
+            console.log(err)
         })
 
         fetch('http://localhost:8000/?'+ new URLSearchParams({
@@ -130,7 +140,12 @@ const Home = ()=>{
         .then(result=>{
             console.log("Following")
             console.log(result)
-            setFollowingData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            const temp = result.data
+            const filteredArray = temp.filter((element) => element !== null)
+            console.log(filteredArray)
+            setFollowingData(filteredArray) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        }).catch(err=>{
+            console.log(err)
         })
 
 
@@ -151,25 +166,9 @@ const Home = ()=>{
         </div>
 
         {/* <Main /> */}
-        <h2>For You</h2>
-        <div className='forYou' style={{display:"flex"}}>
-            {forYouData.map(item=>{
-                return(
-                    <h5 onClick={()=>{navigate(`/user/${item.username}`, { replace: true })}}> | {item.username} | </h5>
-                    
-                )
-            })}
-        </div>
-        <h2>Following</h2>
-        <div className='following'>
-            {followingData.map(item=>{
-                return(
-                    <h5>{item.username}</h5>
-                )
-            })}
-        </div>
         <h2>Your Posts</h2>
         <div className='posts' style={{display:"flex", flexWrap:"wrap", rowGap:"10px", paddingLeft:"20px"}}>
+            {data.length == 0 && <b1>You have no posts</b1>}
             {data.map(item=>{
                 return(
                     <div className='m'>
@@ -183,11 +182,56 @@ const Home = ()=>{
                             />
                         </div>
                         <div>
-                            <h5 style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.description}</h5>
+                            <div style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                                    {item.likesCount} Likes {item.commentsCount} Comments </div>
+                            <p style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.description}</p>
                         </div>
                     </div>
                 )
             })}
+        </div>
+        <h2>Following</h2>
+        <div className='following'>
+            {followingData.length == 0 && <b1>You are not following anyone</b1>}
+            {followingData.map(item=>{
+                return(
+                    <h5>{item.username}</h5>
+                )
+            })}
+        </div>
+        <h2>For You</h2>
+        <div className='forYou' style={{display:"flex"}}>
+            {/* {forYouData.map(item=>{
+                return(
+                    <h5 onClick={()=>{navigate(`/user/${item.username}`, { replace: true })}}> | {item.username} | </h5>
+                    
+                )
+            })} */}
+            {forYouData.length == 0 && <b1>There are no posts</b1>}
+            <div className='posts' style={{display:"flex", flexWrap:"wrap", rowGap:"10px", paddingLeft:"20px"}}>
+                
+                {forYouData.map(item=>{
+                    return(
+                        <div className='m'>
+
+                            <div className='pic' style={{width:"200px", height:"200px"}}>
+                                <img  
+                                alt="posts" 
+                                src={item.postAssets[0]} 
+                                style={{width:"200px", height:"200px", objectFit:"cover"}}
+                                onClick={()=>{navigate(`/post/${item._id}`, { replace: true })}}
+                                />
+                            </div>
+                            <div>
+                                <h6 style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.user.username}</h6>
+                                <div style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                                    {item.likesCount} Likes {item.commentsCount} Comments </div>
+                                <div style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.description}</div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     </div>
     )

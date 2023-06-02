@@ -80,7 +80,7 @@ export default function Register() {
         
       </div>
 
-      <div className="login" >
+      <div className="login" style={{textAlign: "center"}} >
           <Link to="/login" >Have an account? Log in</Link>
       </div>
     </>

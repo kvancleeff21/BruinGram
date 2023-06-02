@@ -79,7 +79,7 @@ function Header() {
           </div>
         </div>
 
-        <div className="login" >
+        <div className="login" style={{textAlign: "center"}}>
           <Link to="/Register" >Don't have an account? Register</Link> 
         </div>
       </>

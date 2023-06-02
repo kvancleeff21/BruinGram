@@ -10,30 +10,33 @@ export default function UserProfile(){
 
     const navigate = useNavigate();
     const [data,setData] = useState([])
+    const [pageData,setPageData] = useState([])
+    const [page, setPage] = useState(1)
     // const [forYouData,setforYouData] = useState([])
     // const [followingData,setFollowingData] = useState([])
     const [profileData,setProfileData] = useState([])
      
     useEffect(()=>{ // to fetch using query, add a ? and then your query. ie. type: 'forYou'
-
+        getPosts();
         // Fetch the user profile
         // Fetch the user's posts
         // let username = userId
         // username = username.replace(/"/g, '');
         // console.log(username);
-        const url = `http://localhost:8000/user/${userId}`;
-        console.log(url);
-        fetch(url
-        ,{
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization":"Bearer "+localStorage.getItem("jwt")
-            }
-        }).then(res=>res.json())
-        .then(result=>{
-            console.log(result)
-            setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-        })
+        // const url = `http://localhost:8000/user/${userId}`;
+        // console.log(url);
+        // fetch(url
+        // ,{
+        //     headers:{
+        //         "Content-Type":"application/json",
+        //         "Authorization":"Bearer "+localStorage.getItem("jwt")
+        //     }
+        // }).then(res=>res.json())
+        // .then(result=>{
+        //     console.log(result)
+        //     setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+        //     setPageData(result.meta.pagination) 
+        // })
 
         const userurl = `http://localhost:8000/${userId}`;
         console.log(userurl);
@@ -80,15 +83,55 @@ export default function UserProfile(){
         // })
 
 
-    },[])
-    
+    },[page]);
+
+    async function getPosts() {
+        const url = `http://localhost:8000/user/${userId}`;
+        console.log(url);
+        fetch(url+'/?'+ new URLSearchParams({
+            page: page
+        })
+        ,{
+            headers:{
+                "Content-Type":"application/json",
+                "Authorization":"Bearer "+localStorage.getItem("jwt")
+            }
+        }).then(res=>res.json())
+        .then(result=>{
+            console.log(result)
+            setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+            setPageData(result.meta.pagination) 
+        })
+    }
+
+
+
+    function nextPage(){
+        if (page < pageData.totalPages){
+            setPage(page + 1)
+        }
+        console.log(pageData.totalPages)
+        console.log(page)
+        //window.location.reload(false);
+        getPosts();
+    }
+    function prevPage(){
+        if (page > 1){
+            setPage(page - 1)
+        }
+        console.log(pageData.totalPages)
+        console.log(page)
+        //window.location.reload(false);
+        getPosts();
+    }
+
     return (
     <div>
         <h1>User Page</h1>
         <div className="profile">
             <h1>{profileData.username}</h1>
             <h3>{profileData.email}</h3>
-            <h3>Follow: {!profileData.isFollow && <p>no</p>}</h3>
+            <button>Follow: {!profileData.isFollow && <p>no</p>}</button>
             <h3>Followers: {profileData.followersCount}</h3>
             <h3>Following: {profileData.followingsCount}</h3>
             <h3>Bio: {profileData.bio}</h3>
@@ -113,12 +156,18 @@ export default function UserProfile(){
                             />
                         </div>
                         <div>
+                            <div style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>
+                                    {item.likesCount} Likes {item.commentsCount} Comments </div>
                             <h5 style={{width:"190px", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis"}}>{item.description}</h5>
                         </div>
                     </div>
                 )
             })}
         </div>
+        <button onClick={()=>{prevPage()}}>Prev Page</button>
+        <button onClick={()=>{nextPage()}}>Next Page</button>
+        <h5>Page {pageData.currentPage}</h5>
+        
     </div>
     )
 }

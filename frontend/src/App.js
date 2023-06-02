@@ -11,7 +11,8 @@ import Upload from './pages/Upload';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ImageDisplay from './pages/Image-display';
-import UserProfile from './pages/Userprofile'
+import UserProfile from './pages/Userprofile';
+import Search from "./pages/Search";
 
 import logo from "./logo.svg";
 
@@ -39,6 +40,7 @@ function App() {
             <li className="nav-item"><Link to="/Register" className="nav-link">Register</Link></li>
             <li className="nav-item"><Link to="/Login" className="nav-link">Login</Link></li>
             <li className="nav-item"><Link to="/" className="nav-link">Profile</Link></li>
+            <li className="nav-item"><Link to="/" className="nav-link">Search</Link></li>
           </ul>
         </div>
         
@@ -69,6 +71,7 @@ function App() {
         <Route path="/Register" element={<Register />}/>
         <Route path="/post/:postId" element={<ImageDisplay />}/>
         <Route path="/user/:userId" element={<UserProfile />}/>
+        <Route path="/search" element={<Search />}/>
       </Routes> 
 
       {/* Old NavBar is ./components/navbar: <NavBar></NavBar> */}

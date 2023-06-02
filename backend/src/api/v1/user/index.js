@@ -10,7 +10,7 @@ const {
 } = require("./controller");
 const verifyToken = require("../../../middlewares/verifyToken");
 
-router.get("/", search);
+router.get("/search/", search);
 router.get("/followings/:userId", verifyToken, getFollowing);
 router.get("/:username", verifyToken, getUser);
 router.get("/followers/:userId", verifyToken, getFollower);

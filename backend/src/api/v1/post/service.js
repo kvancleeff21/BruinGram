@@ -31,10 +31,11 @@ const getPosts = async (req, next) => {
                 .skip(perPage * page - perPage) 
                 .limit(perPage)
                 .sort({ createdAt: -1 });
-
+                
             const reaction = await PostReaction.find({ userId });
             const follow = await Follow.find({ userId });
             const result = posts.map((post) => {
+
                 const { userId: user, ...others } = post._doc;
                 const isReaction = reaction.find((item) => {
                     return item.postId.toString() === post._id.toString();
@@ -42,17 +43,37 @@ const getPosts = async (req, next) => {
                 const isFollow = follow.find((item) => {
                     return item.followId.toString() === user._id.toString();
                 });
-                const newResult = {
-                    ...others,
-                    user: {
-                        ...user._doc,
-                        isFollow: isFollow ? true : false,
-                    },
-                    isReaction: isReaction ? true : false,
-                };
-                return newResult;
-            });
 
+                if (user && user._doc) {
+                    // Access properties of user._doc here
+                    try{
+                        const newResult = {
+                            ...others,
+                            user: {
+                                ...user._doc,
+                                isFollow: isFollow ? true : false,
+                            },
+                            isReaction: isReaction ? true : false,
+                        };
+
+                    }catch (error) {
+                        console.log(error)
+                    }
+                    const newResult = {
+                        ...others,
+                        user: {
+                            ...user._doc,
+                            isFollow: isFollow ? true : false,
+                        },
+                        isReaction: isReaction ? true : false,
+                    };
+
+                    return newResult;
+                  } else {
+                    // Handle the case when user or user._doc is undefined or null
+                    console.log("not defined");
+                  }
+            });
             const count = await Post.count({
                 userId: { $nin: [...arrayFollowId, userId] },
             });
@@ -128,6 +149,7 @@ const getPosts = async (req, next) => {
             };
         }
     } catch (error) {
+        console.log('-----------error somewhere??')
         next(error);
     }
 };
