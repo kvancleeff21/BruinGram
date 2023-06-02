@@ -40,7 +40,7 @@ function App() {
             <li className="nav-item"><Link to="/Register" className="nav-link">Register</Link></li>
             <li className="nav-item"><Link to="/Login" className="nav-link">Login</Link></li>
             <li className="nav-item"><Link to="/" className="nav-link">Profile</Link></li>
-            <li className="nav-item"><Link to="/" className="nav-link">Search</Link></li>
+            <li className="nav-item"><Link to="/search" className="nav-link">Search</Link></li>
           </ul>
         </div>
         
