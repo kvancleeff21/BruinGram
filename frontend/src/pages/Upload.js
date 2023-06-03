@@ -141,7 +141,6 @@ export default function Upload() {
     return (
       <div>
         <form id="uploadForm" encType="multipart/form-data" onSubmit={handleSubmit}>
-          <div>header</div>
 
           <input id='fileUpload' type='file' name='files' multiple
             accept='image/png, image/jpg, image/jpeg'

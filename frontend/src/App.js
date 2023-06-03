@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import ImageDisplay from './pages/Image-display';
 import UserProfile from './pages/Userprofile';
 import Search from "./pages/Search";
+import UpdateProfile from "./pages/UpdateProfile";
 
 
 import {reducer, initialState} from './reducers/userReducer'
@@ -48,6 +49,7 @@ const Routing = ()=>{
         <Route path="/post/:postId" element={<ImageDisplay />}/>
         <Route path="/user/:userId" element={<UserProfile />}/>
         <Route path="/search" element={<Search />}/>
+        <Route path="/UpdateProfile" element={<UpdateProfile />}/>
       </Routes> 
     </>
 

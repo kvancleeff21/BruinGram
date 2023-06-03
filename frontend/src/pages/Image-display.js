@@ -17,13 +17,6 @@ const ImageDisplay = ()=>{
     const [username,setUsername] = useState([])
     console.log("Post ID " + postId)
     useEffect(()=>{ // to fetch using query, add a ? and then your query. ie. type: 'forYou'
-        // fetch('http://localhost:8000/?'+ new URLSearchParams({
-        //     type: 'forYou'
-        // })
-        //let username = localStorage.getItem("user");
-        //const encodedUsername = encodeURIComponent(username);
-        //username = username.replace(/"/g, '');
-        //console.log(username);
 
         // Fetch Post
         const url = `http://localhost:8000/post/${postId}`;
@@ -38,9 +31,14 @@ const ImageDisplay = ()=>{
         }).then(res=>res.json())
         .then(result=>{
             console.log("postData")
-            console.log(result)
-            setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-            setUsername(result.data.user.username)
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                alert(result.errors.message);
+            }else{
+                console.log(result)
+                setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+                setUsername(result.data.user.username)
+            }
         })
         .catch(err=>{
             console.log(err)
@@ -57,9 +55,14 @@ const ImageDisplay = ()=>{
         }).then(res=>res.json())
         .then(result=>{
             console.log("comments")
-            console.log(result)
-            setComments(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-            //setUsername(result.data.user.username)
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                alert(result.errors.message);
+            }else{
+                console.log(result)
+                setComments(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+                //setUsername(result.data.user.username)
+            }
         })
         .catch(err=>{
             console.log(err)
@@ -75,10 +78,15 @@ const ImageDisplay = ()=>{
             }
         }).then(res=>res.json())
         .then(result=>{
-            console.log("reactions")
-            console.log(result)
-            setReactions(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-            //setUsername(result.data.user.username)
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                alert(result.errors.message);
+            }else{
+                console.log("reactions")
+                console.log(result)
+                setReactions(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+                //setUsername(result.data.user.username)
+            }
         })
         .catch(err=>{
             console.log(err)
@@ -99,8 +107,14 @@ const ImageDisplay = ()=>{
             })
         }).then(res=>res.json())
         .then(result=>{
-            console.log("Posted Comment")
-            console.log(result)
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                alert(result.errors.message);
+            }else{
+                console.log("Posted Comment")
+                console.log(result)                
+            }
+
         })
         .catch(err=>{
             console.log(err)
@@ -124,9 +138,14 @@ const ImageDisplay = ()=>{
         }).then(res=>res.json())
         .then(result=>{
             console.log("Liked a post! -> reactions")
-            console.log(result)
-            setReactions(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-            window.location.reload(false);
+            if(result.errors){
+                console.log("This is an error!" + JSON.stringify(result.errors));
+                alert(result.errors.message);
+            }else{
+                console.log(result)
+                setReactions(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
+                window.location.reload(false);
+            }
         })
         .catch(err=>{
             console.log(err)
@@ -143,8 +162,11 @@ const ImageDisplay = ()=>{
 
         <div className='post'>
             <div className='info'>
-                <img  className='pfp' alt="pfp" src='https://m.media-amazon.com/images/I/81QUHsETINL.jpg'/>
-                
+                {data.user && data.user.avatar?
+                <img src={data.user.avatar} alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+                :<img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+                alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+                }
                 <div style={{
                     display:'flex', 
                     flexDirection:'column',
@@ -179,12 +201,7 @@ const ImageDisplay = ()=>{
                 </div>
             </div>
             <div className='interact'>
-                {/* {data.isReaction ?
-                    <button onClick={()=>{likePost()}}> {data.likesCount} likes </button> 
-                    :<button onClick={()=>{likePost()}}> {data.likesCount} unlike </button> } */}
                 <button onClick={()=>{likePost()}}> {data.likesCount} likes </button>
-                {/* <button onClick={()=>{sharePost(50)}}>share</button>
-                <p>10</p> */}
                 <p>{data.createdAt}</p>
             </div>
 
@@ -207,6 +224,11 @@ const ImageDisplay = ()=>{
                 {comments.map(item=>{
                     return(
                         <div>
+                            {item && item.user.avatar?
+                            <img src={item.user.avatar} alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+                            :<img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+                            alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+                            }
                             <h5>{item.user.username}: {item.content}</h5>
                             <div className='timestamp'>{item.createdAt}</div>
                         </div>

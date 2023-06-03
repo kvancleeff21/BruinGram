@@ -153,8 +153,8 @@ const Home = ()=>{
             console.log("Name not available");
             return;
         }
-        console.log("0-0-0-0-0-0-0-0-0-0-");
-        console.log(state);
+        //console.log("0-0-0-0-0-0-0-0-0-0-");
+        //console.log(state);
         // let username = localStorage.getItem("user");
         // username = username.replace(/"/g, '');
         // console.log(username);
@@ -163,7 +163,7 @@ const Home = ()=>{
 
 
         const url = `http://localhost:8000/user/${state}`;
-        console.log(url);
+        //console.log(url);
         fetch(url
         ,{
             headers:{
@@ -174,7 +174,7 @@ const Home = ()=>{
         .then(result=>{
             if(result.errors){
                 console.log("This is an error!" + JSON.stringify(result.errors));
-                alert(result.errors.message);
+                //alert(result.errors.message);
             }else{
                 console.log(result)
                 setData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen                
@@ -184,24 +184,6 @@ const Home = ()=>{
             console.log(err)
         })
 
-        // const userurl = `http://localhost:8000/${username}`;
-        // console.log(userurl);
-        // fetch(userurl
-        // ,{
-        //     headers:{
-        //         "Content-Type":"application/json",
-        //         "Authorization":"Bearer "+localStorage.getItem("jwt")
-        //     }
-        // }).then(res=>res.json())
-        // .then(result=>{
-        //     console.log(result)
-        //     setProfileData(result.data) // data is nested inside an array. Make sure to use this data otherwise weird things happen
-        // }).catch(err=>{
-        //     console.log(err)
-        // })
-
-
-        
 
 
     },[state])
@@ -209,6 +191,11 @@ const Home = ()=>{
     <div>
         <h1>Home/Profile Page</h1>
         <div className="profile">
+            {myData.avatar?
+            <img src={myData.avatar} alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+            :<img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+            alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+            }
             <h3>{myData.username}</h3>
             <h3>{myData.email}</h3>
             <h3>Follow: {!myData.isFollow && <p>no</p>}</h3>
@@ -218,6 +205,7 @@ const Home = ()=>{
             <h5>Last Active: {myData.updatedAt}</h5>
             <h5>Created: {myData.createdAt}</h5>
             <h5>Total Posts: {myData.postCount}</h5>
+            <button onClick={()=>{navigate('/UpdateProfile')}}>Edit</button>
         </div>
 
         {/* <Main /> */}

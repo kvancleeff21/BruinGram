@@ -143,3 +143,13 @@ Content-Type: application/json
 ###
 GET /search/?q=zxy HTTP/1.1
 Host: localhost:8000
+
+### /user/:username getting post comments 646fcc1fb83195e1c56cb2be
+PATCH  /me HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDZmY2M0ZmI4MzE5NWUxYzU2Y2IyYzMiLCJlbWFpbCI6InJpY2hhcmRAYWJjLmNvbSIsImlhdCI6MTY4NTc0ODczNCwiZXhwIjoxNjg1ODM1MTM0fQ.g3BFfi86usCbyZdmO8i-FdIN08_ia1agzZ6QWIYYLG0
+
+{
+    "username": "Richard22"
+}

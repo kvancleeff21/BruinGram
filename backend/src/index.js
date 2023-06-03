@@ -17,8 +17,19 @@ const routes = require("./api");
 app.use(morgan("combined"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.options('*', cors())
+app.use((req, res, next)=>{
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", 
+    "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
 app.use(express.json());
+
+// Add CORS middleware
+
 app.use(routes);
 
 //Handle route

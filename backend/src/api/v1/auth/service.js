@@ -66,6 +66,8 @@ const register = async (req, res, next) => {
 };
 
 const updateCurrentUser = async (req, res, next) => {
+    console.log("--------------------------------------UPDATE-------------------------------------")
+    console.log(req.body)
     try {
         const { userId } = req.payload;
         if (req.file) {

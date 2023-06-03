@@ -69,6 +69,11 @@ export default function Search(){
         {data.map(item=>{
                     return(
                         <div style={{padding:'10px'}}>
+                            {item.avatar?
+                            <img src={item.avatar} alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+                            :<img src="https://static.vecteezy.com/system/resources/thumbnails/009/734/564/small/default-avatar-profile-icon-of-social-media-user-vector.jpg"
+                            alt="Avatar" style={{width:"50px", height:"50px", objectFit:"cover", borderRadius:"100px"}}/>
+                            }
                             <h5 onClick={()=>{navigate(`/user/${item.username}`, { replace: true })}}>{item.username}: Posts - {item.postCount}</h5>
                             <div className='timestamp'>Followers - {item.followersCount} Following - {item.followingsCount}</div>
                         </div>

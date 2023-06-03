@@ -61,7 +61,7 @@ export default function Register() {
       <div className="loginfields" style={{textAlign: "center"}}>
           <h2>!!!Register!!!</h2>
           <p>
-            Username/Email
+            Email
           </p>
           <input type="text" name="username" onChange={(e) => setUsername(e.target.value)}></input>
           <p>
