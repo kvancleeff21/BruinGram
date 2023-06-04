@@ -1,0 +1,235 @@
+.profile-photo {
+ border-radius: 50%;
+ width: 150px;
+ height: 150px;
+ /* object-fit: cover; */
+}
+.profileTabs {
+  display: flex;
+  /* padding-top: 20px; */
+  justify-content: center;
+  margin-bottom: 20px;
+  border-top: 1px solid rgba(var(--b38,219,219,219),1);
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  margin-top: 100px;
+  color: #dbdbdb;
+  /* padding: 20px */
+}
+.profileTab {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: row;
+  height: 52px;
+  justify-content: center;
+  width: 90px;
+}
+.profileTab:not(:last-child) {
+  margin-right: 60px;
+}
+.activeStyle {
+  border-top: 1px solid rgba(var(--i1d,38,38,38),1);
+}
+.activeTextStyle {
+  color: black;
+}
+
+.space {
+  margin: 0 10% 0 6%; 
+}
+.HandleName {
+  font-weight: 100;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 28px;  
+}
+.profileButton {
+ margin: 0 20px;
+ border:  1px solid rgb(218, 215, 215);
+
+}
+.textsize {
+  margin-top: 10px;
+}
+.textsize a {
+  font-size:18px;
+  color: black;
+}
+.textsize a:hover{
+  background: transparent;
+}
+.profileName {
+  font-size: 18px; 
+  font-family: Roboto, Helvetica, Arial, sans-serif;  
+  font-weight: 500;
+}
+.horizontalLine {
+  margin-top: 100px;
+  color: #dbdbdb;
+}
+.icons i {
+  font-size: 0.9em; 
+  color: #8e8e8e;
+  /* font-family: Helvetica, Arial, sans-serif; */
+  display: flex;
+  /* margin-top: -20px; */
+  /* margin-right: 70px; */
+}
+.fa-facebook-square {
+  color: #3b5998;
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+.fa-youtube-play {
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-right: 20px;
+  color: #ff0000;
+}
+.twitter {
+  font-size: 1.5em;
+  margin-top: 10px;
+  margin-right: 20px;
+  color: #00acee;
+}
+
+.profile-form-container {
+  width: 70%; 
+  padding-top: 20px;
+  margin-left: auto; 
+  margin-right: auto;
+}
+.profile-form-card {
+  width: 100%; 
+  height: 100%;
+}
+.profile-form-card-body {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.profile-form-horizontal-line {
+  margin-bottom: 20px;
+}
+.profile-form-input-group {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.profile-form-input-group-text {
+  height: 30px;
+}
+.profile-card-outer {
+  width: 120px; 
+  height: 180px; 
+  align-items: center; 
+  margin-right: 1em; 
+  margin-top: 1em;
+}
+.profile-card-avatar {
+  padding: 3px;
+  border: 0.5px solid #dbdbdb;
+  width: 87px;
+}
+.profile-card-button-follow {
+  background-color: #0095f6;
+  color: white;
+  font-size: 0.9em;
+  font-weight: 500;
+  /* position: absolute;
+  left: 40px; */
+
+}
+.profile-card-button-unfollow {
+  border: 0.5px solid #dbdbdb;
+  color: black;
+  font-size: 0.9em;
+  font-weight: 500;
+}
+.profile-card-card-footer {
+  padding: .75rem 1.25rem;
+  /* position: relative */
+}
+.profile-card-truncate-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
+  text-align: center;
+  color: black;
+  font-weight: 500;
+}
+
+/******Media Queries*****/
+
+@media (max-width: 767px) {
+
+  
+  .profile-photo{
+  margin-top: 30px; 
+  margin-left: 60px;
+  width: 150px;
+  height: 150px;
+  margin-right: 30px;
+  }
+  /* .icons a i{
+  margin-right: 8px;
+  } */
+  .space h2 {
+  font-size: 6vw;
+  }
+  .space input {
+   margin-top: 10px;
+  }
+ .responsiveness {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ }
+ .nameLeftMargin {
+  margin-left: 100px;
+ }
+ .editProfileAvatar{
+   margin-left: 80px;
+ }
+}
+
+@media (max-width: 360px) {
+  .icons a i{
+  margin-right: 4px;
+  font-size: 12px;
+  }
+  .profile-photo{
+  width: 100px;
+  }
+}
+
+.hover-effect img {
+  width: 350px;
+  height: 250px;
+  margin-bottom: 30px; 
+}
+.hover-effect a:hover img {
+    transform: scale(1.1);
+}
+
+ @media (max-width: 780px) {
+.hover-effect img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+ } 
+.circlular {
+  margin-left: 50px;
+}
+
+}
+@media (max-width: 1200px) {
+  .hover-effect img {
+   width: 300px;
+ }
+ .icons a i{
+  margin-right: 20px;
+  }
+}
