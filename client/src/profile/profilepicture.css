@@ -1,0 +1,23 @@
+.containerset {
+  background-color:white;
+  border-radius: 15px;
+  width: 400px;
+}
+.secondsetupload button {
+  outline: none;
+  background-color: white;
+  font: 700 15.3333px Arial;
+  height: 50px;
+  border: transparent;
+  /* border-top: 1px solid rgba(0,0,0,.1); */
+}
+.secondsetupload {
+  height: 100%;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2
+}
