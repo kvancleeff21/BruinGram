@@ -1,0 +1,22 @@
+.info{
+  margin-top: 20px;  
+  text-align: center;
+  color:grey;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.terms{
+  font-size: 10px;
+  text-align: center;
+  color:grey;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.more-info{
+  margin-top: 20px;
+  color:grey;
+  font-family:Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
