@@ -1,0 +1,51 @@
+
+.card-home {
+  /* margin-top: 40px; */
+  float: left; 
+  margin-left: 100px;
+  margin-bottom: 10px;
+  width: 700px;
+  height: 550px;
+  position: absolute;
+  right: 80px;
+  
+}
+.card-header{
+  background-color: white; 
+  
+  border-top: transparent; 
+  
+}
+
+#icons{  
+  margin-top: 10px;
+  margin-left: 10px;  
+  display:inline-block;  }
+  
+.textStyle-date {
+  font-size: 11px;
+  font-weight: 400;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+.textStyle-comment {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial   sans-serif;
+  position: relative;
+  top: 14px;
+  
+}
+.handlename-post{
+  /* margin-left:px; */
+  position: relative;
+  top: 14px;
+  color: black;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: lowercase;
+  text-decoration: none;
+ }
+.card-footer{
+  background-color: white; 
+}
