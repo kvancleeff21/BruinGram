@@ -20,5 +20,10 @@ export class Navbar extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile:state.profile
+});
+
 export default connect(mapStateToProps, { logoutUser })(withRouter(Navbar));
   
