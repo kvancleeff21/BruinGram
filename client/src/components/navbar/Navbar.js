@@ -18,6 +18,56 @@ export class Navbar extends Component {
     };
     this.logoutUserHandle = this.logoutUserHandle.bind(this);
   }
+
+  checkPathName(pathName) {
+    if (pathName == "/home") {
+      this.setState({
+        home: true,
+        explore: false,
+        gallery: false,
+        avatarIcon: false,
+      });
+    } else if (pathName == "/explore") {
+      this.setState({
+        home: false,
+        explore: true,
+        gallery: false,
+        avatarIcon: false,
+      });
+    } else if (pathName == "/gallery") {
+      console.log("hit gallery");
+      this.setState({
+        home: false,
+        explore: false,
+        gallery: true,
+        avatarIcon: false,
+      })
+    } else if (pathName == "/profile" || pathName == "/current-profile") {
+      this.setState({
+        home: false,
+        explore: false,
+        gallery: false,
+        avatarIcon: true,
+      })
+    } else {
+      this.setState({
+        home: false,
+        explore: false,
+        gallery: false,
+        avatarIcon: false,
+      })
+    }
+  }
+
+  componentDidMount() {
+    const pathName = this.props.history.location.pathname;
+    this.checkPathName(pathName);
+  };
+  componentWillReceiveProps(nextProps) {
+    const pathName = nextProps.history.location.pathname;
+    this.checkPathName(pathName);
+  }
+  
 }
 
 const mapStateToProps = (state) => ({
