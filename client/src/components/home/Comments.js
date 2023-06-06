@@ -10,7 +10,7 @@ class Comments extends Component {
     let filterComments =  this.props.comments.filter((comment, index) => index <=2) //filtering to get only first 3 comments
     // let comments;
     let first3comments;
-    if(this.props.comment) {
+    if(this.props.comments) {
      first3comments = filterComments.map(comment => (
         <CommentItem key={comment.id} comment={comment} postId={this.props.postId}
          showAvatar={this.props.showAvatar}
@@ -25,7 +25,7 @@ class Comments extends Component {
          {this.props.comments.length > 3 &&  (<Link
           to={`/post/${postId}`}
           
-          style={{ color: "gray", marginLeft: "40px" }}
+          style={{ color: "gray", marginLeft: "25px" }}
         >
       <Fragment>View all {this.props.comments.length} comments</Fragment>
         </Link>)}

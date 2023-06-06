@@ -11,7 +11,7 @@ class CommentItem extends Component {
       // <div className='container-fluid'>
         <div class='row'>
           <div className='col-lg-11'>
-            <div id='col-space' style={{ marginLeft: "25px", marginTop: "0px"}}>
+            <div id='col-space' style={{ marginLeft: "15px", marginTop: "-10px"}}>
               <Link
                 to={`/profile/${comment.handle}`}
                 className='handlename-post'
