@@ -19,6 +19,12 @@ export class Navbar extends Component {
     this.logoutUserHandle = this.logoutUserHandle.bind(this);
   }
 
+  logoutUserHandle(e) {
+    e.preventDefault();
+    this.props.history.push("/");
+    this.props.logoutUser();
+  }
+
   checkPathName(pathName) {
     if (pathName == "/home") {
       this.setState({
@@ -68,6 +74,8 @@ export class Navbar extends Component {
     this.checkPathName(pathName);
   }
   
+  render() {
+  }
 }
 
 const mapStateToProps = (state) => ({
