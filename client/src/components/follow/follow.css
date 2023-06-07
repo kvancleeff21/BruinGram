@@ -1,0 +1,88 @@
+/* .main {
+ max-height: 100%;
+ background-color: rgba(0,0,0,.5);
+}
+.first {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  
+}
+.second {
+  background-color:white;
+  border-radius: 30px;
+  width: 400px;
+  height: 400px;
+  margin-top: 120px;
+}*/
+.second h5 {
+  color: rgba(var(--i1d,38,38,38),1);
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 15px;
+} 
+.second {
+  height: 100%;
+  position: fixed;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: 2;
+}
+.third {
+  height:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.followers-container {
+  background-color:white;
+  border-radius: 15px;
+  width: 400px;
+  height: 400px;
+}
+.X {
+  float: right;
+  text-decoration: none;
+  color: rgb(38, 38, 38);
+  padding-right: 20px;
+  font-size: 25px;
+  font-weight: 300;
+  margin-top: -30px;
+}
+.followers-avatar-icon {
+  border-radius: 50%;
+  width: 40px;
+  /* margin-left: 0px; */
+  margin-right: 2px;
+}
+.fontStyleSizeColor {
+  color: black;
+  font-family: inherit;
+  font-weight: 600;
+}
+.spaceMargin {
+  margin-top: 5px;
+  padding-bottom: 10px;
+}
+.scrolling {
+  overflow-y: auto;
+  /* overflow-y: scroll; */
+  max-height: 318px;
+}
+@media (max-width: 576px) {
+  .col-xxs-3, .col-xxs-6 {
+  float: left;
+  }           
+.col-sm-3{
+width:25%;
+ }
+.col-sm-6{
+width:50%;
+ }
+}
