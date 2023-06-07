@@ -1,10 +1,21 @@
 .App {
-  text-align: center;
+  background-color: #fafafa;
+  justify-content: center;
 }
-
-.App-logo {
+/*.App-logo {
   height: 40vmin;
   pointer-events: none;
+}*/
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+a:active {
+  opacity: .5;
+}
+
+input:disabled {
+  background-color: #b2dffc;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -35,4 +46,7 @@
   to {
     transform: rotate(360deg);
   }
+}
+.form-control::placeholder {
+  color: #bbb !important;
 }
