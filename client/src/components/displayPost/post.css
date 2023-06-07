@@ -1,0 +1,241 @@
+
+.child {
+  height: 100%; 
+  position: absolute;
+  margin:auto; 
+  top: 0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0,.5);
+  /* width: 100%;*/
+ }
+ 
+ .close > button {
+  float: right;
+  background-color: rgba(0,0,0,.5);
+ }
+ .close button {
+  outline: none;
+  border: transparent;
+  color: white;
+  /* background-color: rgba(0,0,0,.5); */
+ }
+ 
+.container-post {
+  height:100%;
+  display:flex;
+  justify-content: center;
+  align-items: center; 
+  position: relative; 
+  z-index: 2;
+  /* background-color: rgba(0,0,0,.5); */
+}
+.size-of-image {
+  width: 600px;
+  height: 600px;
+  object-fit: cover;
+}
+.style {
+  width: 320px;
+  height: 600px;
+  border:  1px solid rgb(218, 215, 215);
+  /* background-color: rgb(250, 248, 248); */
+  background-color: white;
+
+}
+a:hover {
+  text-decoration: none;
+  color: black;
+}
+a:active {
+  opacity: .5;
+}
+.avatar-icon {
+  border-radius: 50%;
+  width: 35px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+ .handlename-post{
+
+  position: relative;
+  top: 14px;
+  color: black;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: lowercase;
+  text-decoration: none;
+ }
+  
+ .name-of-account {
+  margin-left: 14px;
+  position: relative;
+  top: 10px;
+  color: black;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: lowercase;
+  text-decoration: none;
+ }
+.handlename-avatar {
+  position: relative;
+  top: 10px;
+  color: black;
+  font-family: inherit;
+  font-weight: 600;
+  text-transform: lowercase;
+  padding-left: 10px;
+}
+ #col-space {
+  margin-bottom: 18px;
+  padding-left: 10px;
+ }
+ /* .spaceBtwUsers {
+  margin-bottom: 20px;
+ } */
+.textStyle-comment {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial   sans-serif;
+  position: relative;
+  top: 14px;
+  overflow-wrap: break-word;
+}
+.post-textStyle-date {
+  font-size: 11px;
+  font-weight: 400;
+  margin-left: 15px;
+  color: gray;
+  margin-top: -2px;
+  clear: both;
+}
+.comment-textarea {
+  outline: transparent;
+  resize: none;
+  width: 85%;
+  height:50px;
+ /* background-color: rgb(250, 248, 248); */
+  margin-top: -3px;
+  border: transparent;
+  overflow-y: auto;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow: auto;
+  background-color: white;
+}
+
+.comment-wrapper {
+  overflow-y: auto;
+  /* overflow-y: scroll; */
+  height: 300px;
+  overflow-x: hidden;
+}
+
+ .post {
+  display: inline;
+  color: rgba(var(--d69,0,149,246),1);
+  cursor: pointer;
+  font-weight: 600;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,    Arial, sans-serif;
+  font-size: 14px; 
+  /* background-color:  rgb(250, 248, 248); */
+  border: none;
+  position: relative;
+  bottom: 30px;
+  outline:none;
+  background-color: white;
+}
+
+.post:disabled {
+  color: grey;
+  background-color: white;
+}
+#footer {
+  margin-top: -18px;
+  padding: 0px;
+}
+#footer button:focus {
+  outline: none;
+  color: rgb(50, 50, 243);
+}
+.section-only-mobile {
+  width:600px;
+  height:200px;
+}
+.icons-post {
+  color: black;
+  margin-left: 15px;
+  float: left;
+}
+.delete-post {
+  color: black;
+  margin-left: 93px;
+  float: right
+}
+.create-post-default-image-style {
+  
+  width: 100%; 
+  margin-top: 20px;
+}
+
+/*******Media Queries******/
+
+@media  (min-width: 700px) and (max-width: 1200px) {
+ .section-only-mobile {
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-block;
+}
+.container-post {
+  background-color: white;
+  position: static;
+  margin-top: 0px;
+  }
+.child {
+  background-color: white;
+  }
+#wrapper {
+  text-align: center;
+ }
+}
+@media  (min-width: 300px) and (max-width: 700px) { 
+  /* html, body > #root > div {
+    background-color: white;
+  } */
+  .container-post {
+   background-color: white;
+   position: static;
+   margin-top: -90px;
+   margin-left: 20px;
+  }
+  .child {
+   background-color: white;
+  }
+.section-only-mobile {
+  justify-content: flex-start;
+  align-items: center;
+  display: inline-block; 
+  margin-top: -60px; 
+  margin-left: -70px;
+} 
+#wrapper {
+  text-align: center;
+  margin-top: -30px;
+  
+}
+#wrapper i {
+  margin: 10px;
+}
+#wrapper textarea{
+  width: 400px;
+  height: 100px;
+  padding-top: 20px;
+}
+.size-of-image {
+  width: 90vw;
+  height: 500px;
+  margin-left: 10px;
+ }
+
+}
