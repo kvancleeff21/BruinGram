@@ -133,6 +133,7 @@ class PostItem extends Component {
                 <Link to={`/post/${post._id}`}>
                   {" "}
                   <img
+                    alt="something"
                     className='card-img-top'
                     style={{
                       borderTop: "1px solid rgba(var(--b6a,219,219,219)",

@@ -39,7 +39,7 @@ export class Profile extends Component {
       showFollowing: !this.state.showFollowing,
     });
   };
-  showSettings = (e) => {
+  showSettings = (e) => { 
     this.setState({
       show: !this.state.show,
     });
@@ -140,10 +140,10 @@ export class Profile extends Component {
           <div className='margin'>
             {user.id === profile.user._id ? (
               <div>
-                <Link onClick={(e) => this.changeProfilePicture()}>
+                <Link to="/profile" onClick={(e) => this.changeProfilePicture()}>
                   <img
                     className='profile-photo'
-                    alt='profile-photo'
+                    alt='profile'
                     src={profile.user.avatar}
                   />
                 </Link>
@@ -156,7 +156,7 @@ export class Profile extends Component {
             ) : (
               <img
                 className='profile-photo'
-                alt='profile-photo'
+                alt='profile'
                 src={profile.user.avatar}
               />
             )}
@@ -172,7 +172,7 @@ export class Profile extends Component {
                     >
                       Edit profile
                     </Link>
-                    <Link onClick={(e) => this.showSettings()}>
+                    <Link to='#' onClick={(e) => this.showSettings()}>
                       <i
                         style={{ fontSize: "1.5rem", color: "black" }}
                         className='fas fa-cog'
@@ -202,7 +202,7 @@ export class Profile extends Component {
                   )}
                   &nbsp; &nbsp; &nbsp;&nbsp;
                   {profile.followers.length > 0 ? (
-                    <Link onClick={(e) => this.showFollowersList()}>
+                    <Link to='#' onClick={(e) => this.showFollowersList()}>
                       <b>{followers.length}</b> followers
                     </Link>
                   ) : (
@@ -220,7 +220,7 @@ export class Profile extends Component {
                   />
                   &nbsp; &nbsp; &nbsp;
                   {profile.following.length > 0 ? (
-                    <Link onClick={(e) => this.showFollowingList()}>
+                    <Link to='#' onClick={(e) => this.showFollowingList()}>
                       <b>{following.length}</b> following
                     </Link>
                   ) : (

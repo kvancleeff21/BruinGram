@@ -81,8 +81,8 @@ class CreatePost extends Component {
               accept="image/*"
             />
             
-            {this.state.image && <img src={this.state.image} style={{width: "100%", marginTop: "20px"}}/>}
-            {this.state.showDefault && <img src={defaultImage} className="create-post-default-image-style" alt="default image"/>}
+            {this.state.image && <img src={this.state.image} style={{width: "100%", marginTop: "20px"}} alt="something" />}
+            {this.state.showDefault && <img src={defaultImage} className="create-post-default-image-style" alt="default"/>}
             {errors.image && (
               <div style={{color: "red", fontSize: "80%"}}>{errors.image}</div>
             )}

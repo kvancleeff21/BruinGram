@@ -62,7 +62,7 @@ class Search extends Component {
           <Link  to={`/profile/${profile.handle}`} className="searchOption" onClick={this.searchClick.bind(this)}>
             <div className="searchData">
               <div className="searchAvatarBox">
-                <img className="searchAvatar" src={profile.user.avatar}/>
+                <img className="searchAvatar" src={profile.user.avatar} alt="something"/>
               </div>
               <div className="searchNameBox">
                 <div className="searchName">{profile.user.name}</div>

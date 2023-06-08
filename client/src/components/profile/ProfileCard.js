@@ -39,6 +39,7 @@ class ProfileCard extends Component {
             {" "}
             <Link to={`/profile/${profile.handle}`}>
               <img
+                alt="something"
                 style={{
                   width: "100%",
                   height: "100%",

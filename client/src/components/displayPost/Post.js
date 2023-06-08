@@ -141,6 +141,7 @@ class Post extends Component {
 
           <div className='container-post'>
             <img
+              alt="something"
               className='size-of-image'
               src={post.image}
             />

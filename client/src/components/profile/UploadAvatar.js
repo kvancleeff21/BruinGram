@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import defaultImage from "../../img/defaultImage.jpg";
-import classnames from "classnames";
+//import classnames from "classnames";
 import { connect } from "react-redux";
 import { addPicture } from "../../actions/profileActions";
 import ReactCrop from "react-image-crop";
@@ -210,7 +210,7 @@ class UploadAvatar extends Component {
                   value='Upload'
                   className='btn btn-primary'
                   style={{ width: "70px", height: "35px", marginRight: "10px" }}
-                  disabled='disabled'
+                  //disabled='disabled'
                   disabled={!enabled}
                 >
                   Upload
