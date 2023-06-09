@@ -45,12 +45,12 @@ class SuggestionItem extends Component {
         </span>
         <span style={{ float: "right", marginTop: "10px" }}>
           {!this.state.follow && (
-            <Link onClick={this.handleFollow.bind(this, profile._id)}>
+            <Link to='#' onClick={this.handleFollow.bind(this, profile._id)}>
               Follow
             </Link>
           )}
           {this.state.follow && (
-            <Link onClick={this.handleUnfollow.bind(this, profile._id)}>
+            <Link to='#' onClick={this.handleUnfollow.bind(this, profile._id)}>
               Following
             </Link>
           )}
