@@ -30,3 +30,12 @@ When you execute the react app in the front end with npm start, it should open a
 
 Now, create a profile and enjoy our version of Instagram!
 
+# COMMON BUGS
+- If you are a Mac user, you might have Apple airplay on (default). This uses port 7000 which is also what our backend uses, so you would ideally disable it
+- If you get version mismatch/dependencies, consider replacing part of /client/package.json with:
+> "scripts": {
+>   "start": "react-scripts --openssl-legacy-provider start",
+>   "build": "react-scripts --openssl-legacy-provider build",
+>   "test": "react-scripts test",
+>   "eject": "react-scripts eject"
+> },
